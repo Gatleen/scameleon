@@ -5,6 +5,11 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "noUnusedParameters": false,
+    "strict": true,
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "Node"
   }
 }
