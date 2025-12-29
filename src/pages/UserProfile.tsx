@@ -5,7 +5,6 @@ import {
   Text,
   Button,
   Image,
-  Input,
   Textarea,
   VStack,
   HStack,
@@ -49,7 +48,7 @@ import type { LevelScores } from "../types";
 // --- Types ---
 interface UserProfileData {
   // Read-only (mostly)
-  fullname: string; // Changed from displayName to fullname to match your request
+  fullname: string;
   email: string;
   // Editable in Firestore
   username: string;
@@ -59,10 +58,9 @@ interface UserProfileData {
 }
 
 interface UserProfileProps {
-  userId?: string;
+  // We keep these for flexibility, but usually we fetch internally
   badges?: string[];
   scores?: LevelScores;
-  onBack?: () => void;
 }
 
 // --- CONSTANTS ---
@@ -129,8 +127,8 @@ function StatBox({
 }
 
 export default function UserProfile({
-  badges = [],
-  scores = {},
+  badges: propBadges = [],
+  scores: propScores = {},
 }: UserProfileProps) {
   const toast = useToast();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -145,7 +143,7 @@ export default function UserProfile({
   const [isEditing, setIsEditing] = useState(false);
   const [showCoverMenu, setShowCoverMenu] = useState(false);
 
-  // Initial Profile State (Defaults)
+  // Profile Data State
   const [profileData, setProfileData] = useState<UserProfileData>({
     fullname: "Loading...",
     email: "...",
@@ -157,13 +155,15 @@ export default function UserProfile({
 
   const [editForm, setEditForm] = useState<UserProfileData>(profileData);
 
+  // --- GAME STATS STATE (Fetched from DB) ---
+  const [fetchedBadges, setFetchedBadges] = useState<string[]>(propBadges);
+  const [fetchedScores, setFetchedScores] = useState<LevelScores>(propScores);
+
   // --- 1. FETCH DATA FROM FIREBASE ---
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setCurrentAuthUser(user);
-
-        // Reference to Firestore Document
         const userDocRef = doc(db, "users", user.uid);
 
         try {
@@ -172,10 +172,7 @@ export default function UserProfile({
           if (docSnap.exists()) {
             const firestoreData = docSnap.data();
 
-            // PRIORITY LOGIC:
-            // 1. Try to get 'fullname' from Firestore (custom field).
-            // 2. Fallback to 'displayName' from Auth (standard field).
-            // 3. Fallback to generic string.
+            // 1. Setup Profile Info
             const fetchedName =
               firestoreData.fullname || user.displayName || "Scameleon User";
 
@@ -191,8 +188,17 @@ export default function UserProfile({
             };
             setProfileData(mergedData);
             setEditForm(mergedData);
+
+            // 2. Setup Game Stats (The Fix!)
+            // We fetch 'badges' from root and 'levelScores' from gameProgress
+            const dbBadges = firestoreData.badges || [];
+            const dbProgress = firestoreData.gameProgress || {};
+            const dbScores = dbProgress.levelScores || {};
+
+            setFetchedBadges(dbBadges);
+            setFetchedScores(dbScores);
           } else {
-            // New user or no Firestore record yet
+            // New user defaults
             const defaultData = {
               fullname: user.displayName || "New User",
               email: user.email || "",
@@ -219,27 +225,28 @@ export default function UserProfile({
     return () => unsubscribe();
   }, [toast]);
 
-  // --- 2. STATS CALCULATION ---
+  // --- 2. STATS CALCULATION (Using Fetched Data) ---
   const stats = useMemo(() => {
-    const totalScore = Object.values(scores).reduce((a, b) => a + b, 0);
-    const completedLevels = Object.values(scores).filter(
+    const totalScore = Object.values(fetchedScores).reduce((a, b) => a + b, 0);
+    const completedLevels = Object.values(fetchedScores).filter(
       (s) => s >= PASS_SCORE
     ).length;
 
-    const validBadges = badges.filter((id) => BADGES.some((b) => b.id === id));
+    const validBadges = fetchedBadges.filter((id) =>
+      BADGES.some((b) => b.id === id)
+    );
 
     return {
       totalScore,
       completedLevels,
       validBadgeCount: validBadges.length,
     };
-  }, [scores, badges]);
+  }, [fetchedScores, fetchedBadges]);
 
   // --- HANDLERS ---
 
   const handleEditToggle = () => {
     if (isEditing) {
-      // If cancelling, revert form to current saved data
       setEditForm(profileData);
       setShowCoverMenu(false);
     }
@@ -250,9 +257,6 @@ export default function UserProfile({
     if (!currentAuthUser) return;
 
     try {
-      // Update Firestore
-      // Note: We are saving bio, images, and username.
-      // We generally do NOT overwrite the Fullname/Email here as they are read-only identifiers
       const dataToSave = {
         bio: editForm.bio,
         avatarUrl: editForm.avatarUrl,
@@ -264,7 +268,6 @@ export default function UserProfile({
         merge: true,
       });
 
-      // Update Local State
       setProfileData({
         ...profileData,
         ...dataToSave,
@@ -506,15 +509,12 @@ export default function UserProfile({
               {/* User Details */}
               <VStack align="stretch" spacing={4}>
                 <Box>
-                  {/* READ ONLY FIELDS - Fullname from Firebase */}
                   <Heading size="lg" color="gray.800">
                     {profileData.fullname}
                   </Heading>
                   <Text color="gray.500" fontSize="sm">
                     {profileData.email}
                   </Text>
-
-                  {/* Username (Editable via form) */}
                   <Text color="orange.400" fontSize="sm" mt={1}>
                     @{profileData.username}
                   </Text>
@@ -562,7 +562,6 @@ export default function UserProfile({
           </Box>
 
           {/* --- SCALES CARD (Balance) --- */}
-          {/* Passed currentAuthUser ID to ensure we load the correct balance */}
           {currentAuthUser && (
             <Flex justify="center" mb={6}>
               <ScalesCard userId={currentAuthUser.uid} />
@@ -587,7 +586,8 @@ export default function UserProfile({
 
             <VStack spacing={3} align="stretch">
               {BADGES.map((badge) => {
-                const isUnlocked = badges.includes(badge.id);
+                // UPDATE: Use fetchedBadges here!
+                const isUnlocked = fetchedBadges.includes(badge.id);
                 const colorScheme = getBadgeColor(badge.type);
 
                 return (

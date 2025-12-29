@@ -17,15 +17,13 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   Image,
   VStack,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 
 // --- FIREBASE IMPORTS ---
-//
-import { doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
+import { doc, getDoc, setDoc, arrayUnion } from "firebase/firestore"; // Added setDoc
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../firebase/firebaseConfig";
 
@@ -70,7 +68,7 @@ const theme = extendTheme({
   styles: {
     global: {
       "html, body": {
-        backgroundColor: "#f9f1e8", // Updated background color here
+        backgroundColor: "#f9f1e8",
         fontFamily: "Inter, sans-serif",
       },
     },
@@ -121,24 +119,31 @@ const QuizContent: React.FC<QuizContentProps> = ({
   const [myBadges, setMyBadges] = useState<string[]>([]);
 
   // --- 1. LOAD DATA ---
-  //
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setUserId(user.uid);
         try {
-          const docSnap = await getDoc(doc(db, "users", user.uid));
+          const docRef = doc(db, "users", user.uid);
+          const docSnap = await getDoc(docRef);
+
           if (docSnap.exists()) {
             const data = docSnap.data();
+
+            // Gracefully handle missing gameProgress for new users
             const progress = data.gameProgress || {};
+
             setHearts(progress.hearts ?? HEARTS_MAX);
             setNextHeartTime(progress.nextHeartTime ?? null);
             setUnlockedLevels(progress.unlockedLevels ?? [1]);
             setLevelScores(progress.levelScores ?? {});
             setPlayedWorlds(progress.playedWorlds ?? []);
             setGameFinished(progress.gameFinished ?? false);
+
+            // Badges are usually stored at the root, check there
             setMyBadges(data.badges || []);
           }
+          // If doc doesn't exist, we just use the default state (Level 1, Score 0)
         } catch (error) {
           console.error("Error fetching game data:", error);
         }
@@ -148,16 +153,18 @@ const QuizContent: React.FC<QuizContentProps> = ({
     return () => unsubscribe();
   }, []);
 
-  // --- 2. SAVE HELPER ---
+  // --- 2. SAVE HELPER (ROBUST VERSION) ---
   const saveProgressToFirebase = useCallback(
     async (updates: any) => {
       if (!userId) return;
       try {
-        const dotNotationUpdates: any = {};
-        Object.keys(updates).forEach((key) => {
-          dotNotationUpdates[`gameProgress.${key}`] = updates[key];
-        });
-        await updateDoc(doc(db, "users", userId), dotNotationUpdates);
+        // We use setDoc with { merge: true } instead of updateDoc
+        // This automatically creates the 'gameProgress' object/document if it's missing!
+        const payload = {
+          gameProgress: updates,
+        };
+
+        await setDoc(doc(db, "users", userId), payload, { merge: true });
       } catch (error) {
         console.error("Error saving progress:", error);
       }
@@ -224,9 +231,14 @@ const QuizContent: React.FC<QuizContentProps> = ({
         setMyBadges((prev) => [...prev, badgeId]);
         if (onBadgeUnlock) onBadgeUnlock(badgeId);
         if (userId) {
-          await updateDoc(doc(db, "users", userId), {
-            badges: arrayUnion(badgeId),
-          });
+          // Robust save for badges (creates doc if missing)
+          await setDoc(
+            doc(db, "users", userId),
+            {
+              badges: arrayUnion(badgeId),
+            },
+            { merge: true }
+          );
         }
       }
     },
@@ -324,13 +336,7 @@ const QuizContent: React.FC<QuizContentProps> = ({
   // --- RENDER ---
   if (isLoading) {
     return (
-      <Flex
-        minH="100vh"
-        w="full"
-        align="center"
-        justify="center"
-        bg="#f9f1e8" // Updated background color
-      >
+      <Flex minH="100vh" w="full" align="center" justify="center" bg="#f9f1e8">
         <Flex direction="column" align="center" gap={4}>
           <Spinner size="xl" color="blue.500" thickness="4px" />
           <Text color="gray.600" fontWeight="medium">
@@ -341,17 +347,8 @@ const QuizContent: React.FC<QuizContentProps> = ({
     );
   }
 
-  // NOTE: I removed the early return for HaltScreen so the Pop-up can render on top of it.
-  // The Halt logic is now handled inside the main render block.
-
   return (
-    <Flex
-      direction="column"
-      minH="100vh"
-      w="full"
-      align="center"
-      bg="#f9f1e8" // Updated background color
-    >
+    <Flex direction="column" minH="100vh" w="full" align="center" bg="#f9f1e8">
       {/* --- START GAME POP-UP (Appears every load) --- */}
       <Modal
         isOpen={showStartModal}
@@ -381,7 +378,6 @@ const QuizContent: React.FC<QuizContentProps> = ({
                 borderColor="orange.200"
                 w="full"
               >
-                {/* Ensure you have this image in your project or update the path! */}
                 <Image
                   src="src/assets/QuizWorlds/TheScamvillains.png"
                   alt="The ScamVillains"
@@ -452,9 +448,6 @@ const QuizContent: React.FC<QuizContentProps> = ({
             w="full"
           >
             {/* --- VIEW ROUTER --- */}
-            {/*  */}
-            {/* If hearts are 0 OR view is halt, show HaltScreen. 
-                Otherwise show the Game Views. */}
             {view === "halt" || hearts === 0 ? (
               <HaltScreen
                 nextHeartTime={nextHeartTime}
