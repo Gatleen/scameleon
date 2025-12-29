@@ -6,6 +6,7 @@
   ],
   "compilerOptions": {
     "verbatimModuleSyntax": true,
+    "noUnusedLocals": false,
     "noUnusedParameters": false,
     "strict": true,
     "esModuleInterop": true,
