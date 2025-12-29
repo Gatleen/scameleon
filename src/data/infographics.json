@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "What To Do After Being Scammed",
+    "description": "Step-by-step guide to help you after being scammed.",
+    "image": "src/assets/Infographics/Infographic-1.png"
+  },
+  {
+    "id": 2,
+    "title": "Top Scam Types",
+    "description": "Get to know the top scam types that are trending now.",
+    "image": "src/assets/Infographics/Infographic-2.png"
+  },
+  {
+    "id": 3,
+    "title": "Scam Red Flags to Watch Out For",
+    "description": "Teach yourself how to spot scams.",
+    "image": "src/assets/Infographics/Infographic-3.png"
+  },
+  {
+    "id": 4,
+    "title": "Do’s & Don’ts of Staying Safe Online",
+    "description": "Do you know how to stay safe online?",
+    "image": "src/assets/Infographics/Infographic-4.png"
+  },
+  {
+    "id": 5,
+    "title": "How to Verify People Online",
+    "description": "It can be tricky to determine if someone is real, learn how to here!",
+    "image": "src/assets/Infographics/Infographic-5.png"
+  },
+  {
+    "id": 6,
+    "title": "Emergency Scams",
+    "description": "Why are emergency scams so dangerous?",
+    "image": "src/assets/Infographics/Infographic-6.png"
+  }
+]

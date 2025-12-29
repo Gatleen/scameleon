@@ -1,0 +1,349 @@
+{
+  "worldId": "sms_desert_dune",
+  "worldName": "SMS Desert Dune",
+  "villain": "Dusty the Dune Worm",
+  "levels": [
+    {
+      "levelId": "level-5",
+      "title": "SMS Warning Signs",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Which of the following is a red flag in an SMS?",
+          "choices": [
+            { "id": "a", "text": "Message from a known family member" },
+            {
+              "id": "b",
+              "text": "SMS from an unknown number claiming you won a prize"
+            },
+            { "id": "c", "text": "SMS reminder about an appointment" },
+            { "id": "d", "text": "SMS from your bank’s official number" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Unexpected prize claims from unknown numbers are common scam tactics."
+        },
+        {
+          "id": "q2",
+          "text": "A safe way to respond to an unexpected SMS claiming you owe money is:",
+          "choices": [
+            { "id": "a", "text": "Reply immediately to avoid fines" },
+            {
+              "id": "b",
+              "text": "Verify with the company using official contact information"
+            },
+            { "id": "c", "text": "Click the link in the message" },
+            { "id": "d", "text": "Forward to friends for advice" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Always verify using official phone numbers or apps rather than interacting with the SMS."
+        },
+        {
+          "id": "q3",
+          "text": "Which is a common tactic used in scam SMS?",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Urgency, like ‘Pay now or account will close!’"
+            },
+            { "id": "b", "text": "Friendly greetings only" },
+            {
+              "id": "c",
+              "text": "Detailed explanations of your account history"
+            },
+            { "id": "d", "text": "Asking harmless questions about your day" }
+          ],
+          "correctChoiceId": "a",
+          "explanation": "Scammers use urgency to pressure quick actions without verification."
+        },
+        {
+          "id": "q4",
+          "text": "If an SMS contains a shortened link (like bit.ly) from an unknown sender, you should:",
+          "choices": [
+            { "id": "a", "text": "Click to see where it leads" },
+            { "id": "b", "text": "Avoid clicking and delete the message" },
+            { "id": "c", "text": "Reply asking for more information" },
+            { "id": "d", "text": "Save it for later" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Shortened links hide destinations and are often used to mask malicious sites."
+        },
+        {
+          "id": "q5",
+          "text": "Which action is safest when receiving suspicious SMS?",
+          "choices": [
+            { "id": "a", "text": "Forward to coworkers to check" },
+            {
+              "id": "b",
+              "text": "Delete the message or report it to your mobile carrier"
+            },
+            { "id": "c", "text": "Call the number directly" },
+            { "id": "d", "text": "Respond asking if it’s real" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Deleting or reporting prevents accidental interaction and helps carriers block scams."
+        }
+      ]
+    },
+    {
+      "levelId": "level-6",
+      "title": "Urgent! Pressure Tactics",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Which message is likely a scam using pressure tactics?",
+          "choices": [
+            {
+              "id": "a",
+              "text": "“Reminder: Your subscription ends in 7 days”"
+            },
+            {
+              "id": "b",
+              "text": "“Act now or your account will be frozen in 1 hour!”"
+            },
+            { "id": "c", "text": "“Your bank statement is available”" },
+            { "id": "d", "text": "“Meeting scheduled tomorrow”" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Threats with very short deadlines are classic pressure tactics used by scammers."
+        },
+        {
+          "id": "q2",
+          "text": "Scammers create urgency to:",
+          "choices": [
+            { "id": "a", "text": "Give you enough time to think" },
+            {
+              "id": "b",
+              "text": "Make you act without verifying the information"
+            },
+            { "id": "c", "text": "Entertain you" },
+            { "id": "d", "text": "Provide detailed account info" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Urgency reduces the chance victims will pause to check facts."
+        },
+        {
+          "id": "q3",
+          "text": "If an SMS tells you to 'call immediately to claim a prize,' you should:",
+          "choices": [
+            { "id": "a", "text": "Call right away" },
+            {
+              "id": "b",
+              "text": "Verify the claim independently before taking action"
+            },
+            { "id": "c", "text": "Reply 'I’m busy'" },
+            { "id": "d", "text": "Forward to friends" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Verify using official sources before calling or sharing any details."
+        },
+        {
+          "id": "q4",
+          "text": "Pressure tactics in SMS often include:",
+          "choices": [
+            { "id": "a", "text": "Relaxed language and casual tone" },
+            {
+              "id": "b",
+              "text": "Threats of account closure, fines, or legal action"
+            },
+            { "id": "c", "text": "Questions about hobbies" },
+            { "id": "d", "text": "Instructions to meet a friend" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Scammers use scary consequences to force quick, unverified responses."
+        },
+        {
+          "id": "q5",
+          "text": "The safest way to respond to urgent-sounding messages is:",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Ignore, delete, and confirm with official channels"
+            },
+            { "id": "b", "text": "Reply politely" },
+            { "id": "c", "text": "Click any links to check" },
+            { "id": "d", "text": "Call back immediately" }
+          ],
+          "correctChoiceId": "a",
+          "explanation": "Ignoring and verifying independently prevents falling for pressure tactics."
+        }
+      ]
+    },
+    {
+      "levelId": "level-7",
+      "title": "Parcel & Delivery Scams",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Which SMS is suspicious regarding deliveries?",
+          "choices": [
+            {
+              "id": "a",
+              "text": "“Your package from Amazon will arrive tomorrow”"
+            },
+            {
+              "id": "b",
+              "text": "“Your parcel is held, pay $10 immediately to release it”"
+            },
+            {
+              "id": "c",
+              "text": "“Track your shipment here” from official tracking link"
+            },
+            { "id": "d", "text": "“Your order has shipped” from known courier" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Requests for immediate payment to release a package are common scams."
+        },
+        {
+          "id": "q2",
+          "text": "Scammers often claim packages are:",
+          "choices": [
+            { "id": "a", "text": "Held or undeliverable until you pay a fee" },
+            { "id": "b", "text": "Delivered safely" },
+            { "id": "c", "text": "Confirmed by official tracking websites" },
+            {
+              "id": "d",
+              "text": "Only available for pick-up by you personally"
+            }
+          ],
+          "correctChoiceId": "a",
+          "explanation": "Fake fees for release are a tactic to steal money from victims."
+        },
+        {
+          "id": "q3",
+          "text": "A safe step if you receive a suspicious delivery SMS is:",
+          "choices": [
+            { "id": "a", "text": "Pay the fee immediately" },
+            {
+              "id": "b",
+              "text": "Contact the courier directly using official contact info"
+            },
+            { "id": "c", "text": "Reply 'Who is this?'" },
+            { "id": "d", "text": "Share the SMS on social media" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Verify delivery issues using the courier’s official website or customer service."
+        },
+        {
+          "id": "q4",
+          "text": "Shortened tracking links in delivery SMS should:",
+          "choices": [
+            { "id": "a", "text": "Always be clicked" },
+            {
+              "id": "b",
+              "text": "Be treated with caution; verify via the courier’s website"
+            },
+            { "id": "c", "text": "Be forwarded to friends" },
+            {
+              "id": "d",
+              "text": "Be ignored only if package seems unimportant"
+            }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Shortened links can hide malicious destinations; verify on the courier’s site instead."
+        },
+        {
+          "id": "q5",
+          "text": "Delivery scams often try to:",
+          "choices": [
+            { "id": "a", "text": "Provide free gifts" },
+            {
+              "id": "b",
+              "text": "Trick users into paying for fake shipping or taxes"
+            },
+            { "id": "c", "text": "Confirm correct addresses" },
+            { "id": "d", "text": "Help you reschedule your delivery" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Many delivery scams aim to get victims to pay fake fees or taxes."
+        }
+      ]
+    },
+    {
+      "levelId": "level-8",
+      "title": "Bank SMS Scams",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "An SMS claiming your account is 'temporarily blocked' and asking to click a link is:",
+          "choices": [
+            { "id": "a", "text": "Safe to open" },
+            {
+              "id": "b",
+              "text": "Likely a scam attempting to steal your banking info"
+            },
+            { "id": "c", "text": "Always sent by banks for security" },
+            { "id": "d", "text": "A normal update" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Banks rarely ask you to click links in SMS to fix account issues; this is a common phishing tactic."
+        },
+        {
+          "id": "q2",
+          "text": "Which action is safest when you receive a bank-related suspicious SMS?",
+          "choices": [
+            { "id": "a", "text": "Click the link and log in" },
+            { "id": "b", "text": "Reply asking for confirmation" },
+            {
+              "id": "c",
+              "text": "Contact the bank using the official phone number or app"
+            },
+            { "id": "d", "text": "Forward the SMS to friends" }
+          ],
+          "correctChoiceId": "c",
+          "explanation": "Use the bank’s official app or phone number to verify any urgent account messages."
+        },
+        {
+          "id": "q3",
+          "text": "Red flags for banking SMS scams include:",
+          "choices": [
+            { "id": "a", "text": "Official logos and correct grammar" },
+            {
+              "id": "b",
+              "text": "Urgency, unknown sender, and shortened URLs"
+            },
+            {
+              "id": "c",
+              "text": "Personalized account numbers from your statement"
+            },
+            { "id": "d", "text": "Notifications from the bank’s mobile app" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Shortened links, unknown senders, and urgent threats are classic banking scam signs."
+        },
+        {
+          "id": "q4",
+          "text": "Which of the following is a safer practice?",
+          "choices": [
+            { "id": "a", "text": "Reply to the SMS to ask questions" },
+            {
+              "id": "b",
+              "text": "Open the bank app independently and check messages"
+            },
+            {
+              "id": "c",
+              "text": "Call the number provided in the SMS immediately"
+            },
+            { "id": "d", "text": "Click the link to see account details" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Opening the official bank app avoids interacting with potentially malicious links or numbers."
+        },
+        {
+          "id": "q5",
+          "text": "If an SMS claims 'Your account will be frozen unless you act now,' you should:",
+          "choices": [
+            { "id": "a", "text": "Panic and follow the instructions" },
+            {
+              "id": "b",
+              "text": "Ignore the SMS and verify directly with the bank"
+            },
+            { "id": "c", "text": "Share the message with coworkers" },
+            { "id": "d", "text": "Reply to dispute it" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Verify with the bank using known channels before taking any action."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,337 @@
+{
+  "worldId": "social_scam_city",
+  "worldName": "Social Scam City",
+  "villain": "Svana the Swan",
+  "levels": [
+    {
+      "levelId": "level-17",
+      "title": "Romance Scams",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Which of these is a red flag for a romance scam?",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Someone you met on a verified social platform"
+            },
+            {
+              "id": "b",
+              "text": "They profess love quickly and ask for money"
+            },
+            { "id": "c", "text": "They respond casually to messages" },
+            { "id": "d", "text": "They share only public photos" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Rapid declarations of love paired with requests for money are classic romance scam red flags."
+        },
+        {
+          "id": "q2",
+          "text": "If someone online asks for financial help despite just meeting you, you should:",
+          "choices": [
+            { "id": "a", "text": "Send a small amount to test" },
+            { "id": "b", "text": "Refuse and block them" },
+            { "id": "c", "text": "Ask them to meet in person immediately" },
+            { "id": "d", "text": "Give bank details carefully" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Never send money to someone you’ve just met online; block and avoid contact."
+        },
+        {
+          "id": "q3",
+          "text": "Romance scammers often:",
+          "choices": [
+            { "id": "a", "text": "Want to meet in public immediately" },
+            {
+              "id": "b",
+              "text": "Create urgent emotional situations to extract money"
+            },
+            { "id": "c", "text": "Avoid online communication" },
+            { "id": "d", "text": "Never ask for personal information" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "They manufacture emotional crises to pressure victims into sending money."
+        },
+        {
+          "id": "q4",
+          "text": "Which is safest when engaging with a new online acquaintance?",
+          "choices": [
+            { "id": "a", "text": "Share your full address" },
+            {
+              "id": "b",
+              "text": "Avoid sending money and verify identities independently"
+            },
+            { "id": "c", "text": "Trust if they seem honest" },
+            { "id": "d", "text": "Meet them privately quickly" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Always verify identity and avoid sending money to protect yourself."
+        },
+        {
+          "id": "q5",
+          "text": "A red flag in romance scam messages is:",
+          "choices": [
+            { "id": "a", "text": "Sharing hobbies and interests" },
+            {
+              "id": "b",
+              "text": "Consistent stories about emergencies requiring money"
+            },
+            { "id": "c", "text": "Sending friendly memes" },
+            { "id": "d", "text": "Using video calls to communicate" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Repeated emergency stories asking for money are a strong scam indicator."
+        }
+      ]
+    },
+    {
+      "levelId": "level-18",
+      "title": "Friend in Trouble",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "What makes a “friend in trouble” scam suspicious?",
+          "choices": [
+            { "id": "a", "text": "They ask to meet in person" },
+            {
+              "id": "b",
+              "text": "The friend asks for money urgently via text or social media"
+            },
+            { "id": "c", "text": "They share everyday experiences" },
+            { "id": "d", "text": "They request advice without money" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Urgent money requests from a friend are often scams."
+        },
+        {
+          "id": "q2",
+          "text": "If someone claims to be your friend needing financial help, the safest action is:",
+          "choices": [
+            { "id": "a", "text": "Send money immediately" },
+            {
+              "id": "b",
+              "text": "Contact the friend through other means to confirm"
+            },
+            { "id": "c", "text": "Ignore the message entirely" },
+            { "id": "d", "text": "Share their story online" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Verify their situation independently before taking any action."
+        },
+        {
+          "id": "q3",
+          "text": "Common tactics of “friend in trouble” scams include:",
+          "choices": [
+            { "id": "a", "text": "Casual chats about daily life" },
+            {
+              "id": "b",
+              "text": "Urgent stories of emergencies or arrests abroad"
+            },
+            { "id": "c", "text": "Inviting you to online games" },
+            { "id": "d", "text": "Asking you to check social media" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Scammers create fake emergencies to pressure victims into sending money."
+        },
+        {
+          "id": "q4",
+          "text": "Which action protects you from this scam?",
+          "choices": [
+            { "id": "a", "text": "Replying quickly to their request" },
+            {
+              "id": "b",
+              "text": "Independently verify the friend’s situation before acting"
+            },
+            { "id": "c", "text": "Forwarding to your family" },
+            { "id": "d", "text": "Sending a small token amount" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Always confirm authenticity before sending money or sharing personal info."
+        },
+        {
+          "id": "q5",
+          "text": "A warning sign of this scam is:",
+          "choices": [
+            { "id": "a", "text": "Seeing familiar photos" },
+            {
+              "id": "b",
+              "text": "Unknown accounts or impersonated profiles contacting you"
+            },
+            { "id": "c", "text": "Chatting casually" },
+            { "id": "d", "text": "Requests for friendly advice" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Impersonated accounts attempting to get money are a major red flag."
+        }
+      ]
+    },
+    {
+      "levelId": "level-19",
+      "title": "Impersonation & Jobs",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Which is a red flag for impersonation scams?",
+          "choices": [
+            { "id": "a", "text": "Verified profiles on social media" },
+            {
+              "id": "b",
+              "text": "Someone claiming to be a trusted company or official, but messaging you from personal accounts"
+            },
+            { "id": "c", "text": "Professional emails from official domains" },
+            { "id": "d", "text": "Calling through official numbers" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Legitimate companies contact through official channels, not personal accounts."
+        },
+        {
+          "id": "q2",
+          "text": "A suspicious job offer often:",
+          "choices": [
+            { "id": "a", "text": "Requires an interview" },
+            {
+              "id": "b",
+              "text": "Asks for upfront payment or banking details"
+            },
+            { "id": "c", "text": "Requests a resume" },
+            { "id": "d", "text": "Shares a contract via official email" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Upfront payments or requests for bank info are a scam tactic."
+        },
+        {
+          "id": "q3",
+          "text": "How can you verify a job offer?",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Send your money first to secure the position"
+            },
+            {
+              "id": "b",
+              "text": "Contact the company directly using official contact information"
+            },
+            { "id": "c", "text": "Ask the recruiter to call back" },
+            { "id": "d", "text": "Accept if it seems urgent" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Verify offers independently with the company using official channels."
+        },
+        {
+          "id": "q4",
+          "text": "Impersonation scammers may:",
+          "choices": [
+            { "id": "a", "text": "Send contracts with official branding" },
+            {
+              "id": "b",
+              "text": "Pretend to be friends, family, or companies to get personal info or money"
+            },
+            { "id": "c", "text": "Ask for public advice" },
+            { "id": "d", "text": "Send casual messages only" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "They impersonate trusted sources to gain sensitive information."
+        },
+        {
+          "id": "q5",
+          "text": "The safest action when suspicious of impersonation or job scams is:",
+          "choices": [
+            { "id": "a", "text": "Trust their urgency" },
+            {
+              "id": "b",
+              "text": "Verify independently, do not provide personal info, and report the scam"
+            },
+            { "id": "c", "text": "Follow instructions cautiously" },
+            { "id": "d", "text": "Share with friends for confirmation" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Independent verification and not giving personal info keeps you safe."
+        }
+      ]
+    },
+    {
+      "levelId": "level-20",
+      "title": "Final Boss: Multi-Layered",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Multi-layered scams often:",
+          "choices": [
+            { "id": "a", "text": "Involve only one type of scam at a time" },
+            {
+              "id": "b",
+              "text": "Combine emails, calls, SMS, and social media to target victims"
+            },
+            { "id": "c", "text": "Never involve money" },
+            { "id": "d", "text": "Use only public notifications" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Scammers use multiple channels simultaneously to increase pressure and chances of success."
+        },
+        {
+          "id": "q2",
+          "text": "If you receive messages from multiple channels about urgent financial requests, you should:",
+          "choices": [
+            { "id": "a", "text": "Respond to the one that seems real" },
+            {
+              "id": "b",
+              "text": "Pause and verify each independently; avoid sending money"
+            },
+            { "id": "c", "text": "Forward to friends for advice" },
+            { "id": "d", "text": "Click all links to check" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Verify each request independently to avoid falling for multi-layered scams."
+        },
+        {
+          "id": "q3",
+          "text": "Which is a red flag in multi-layered scams?",
+          "choices": [
+            { "id": "a", "text": "Only one message type" },
+            {
+              "id": "b",
+              "text": "Consistent urgent requests for money or personal info across channels"
+            },
+            { "id": "c", "text": "Verified contacts" },
+            { "id": "d", "text": "Educational emails" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Repeated urgent requests across different channels are highly suspicious."
+        },
+        {
+          "id": "q4",
+          "text": "To protect yourself from multi-layered scams, you should:",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Be skeptical, verify independently, and report suspicious contacts"
+            },
+            { "id": "b", "text": "Follow instructions slowly" },
+            { "id": "c", "text": "Respond politely to each request" },
+            { "id": "d", "text": "Share all messages for advice" }
+          ],
+          "correctChoiceId": "a",
+          "explanation": "Skepticism, independent verification, and reporting are key to staying safe."
+        },
+        {
+          "id": "q5",
+          "text": "The final boss rule for online safety is:",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Trust emails, calls, and SMS if they look professional"
+            },
+            {
+              "id": "b",
+              "text": "Always verify identities and links before taking any action"
+            },
+            { "id": "c", "text": "Provide small amounts of money to test" },
+            { "id": "d", "text": "Respond immediately to urgent messages" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Verification before acting ensures safety against complex, multi-layered scams."
+        }
+      ]
+    }
+  ]
+}

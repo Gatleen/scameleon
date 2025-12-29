@@ -1,0 +1,109 @@
+[
+  {
+    "id": "merch_01",
+    "name": "Tumbler",
+    "description": "Drink the scams away with this insulated stainless steel tumbler.",
+    "price": 1200,
+    "stock": 50,
+    "images": [
+      "src/assets/ScameleonMerch/Tumbler-1.png",
+      "src/assets/ScameleonMerch/Tumbler-2.png",
+      "src/assets/ScameleonMerch/Tumbler-3.png"
+    ]
+  },
+  {
+    "id": "merch_02",
+    "name": "Pillow",
+    "description": "Guarantees a good sleep and peace from scams.",
+    "price": 900,
+    "stock": 100,
+    "images": ["src/assets/ScameleonMerch/Pillow-1.png"]
+  },
+  {
+    "id": "merch_03",
+    "name": "Phone Case",
+    "description": "Pick up important calls with Scameleon by your side!",
+    "price": 500,
+    "stock": 200,
+    "images": ["src/assets/ScameleonMerch/PhoneCase-1.png"]
+  },
+  {
+    "id": "merch_04",
+    "name": "Hoodie",
+    "description": "Cozy up with this comfy hoodie and stay scam-free.",
+    "price": 700,
+    "stock": 75,
+    "images": [
+      "src/assets/ScameleonMerch/Hoodie-1.png",
+      "src/assets/ScameleonMerch/Hoodie-2.png"
+    ]
+  },
+  {
+    "id": "merch_05",
+    "name": "Tote Bag",
+    "description": "Carry your essentials while staying vigilant against scams.",
+    "price": 400,
+    "stock": 40,
+    "images": ["src/assets/ScameleonMerch/ToteBag-1.png"]
+  },
+  {
+    "id": "merch_06",
+    "name": "Notebook",
+    "description": "Scribble down scam alerts and tips in this handy notebook.",
+    "price": 350,
+    "stock": 25,
+    "images": ["src/assets/ScameleonMerch/Notebook-1.png"]
+  },
+  {
+    "id": "merch_07",
+    "name": "Malaysian Sticker Sheet",
+    "description": "A collection of fun stickers featuring Malaysia.",
+    "price": 250,
+    "stock": 60,
+    "images": ["src/assets/ScameleonMerch/Sticker-1.png"]
+  },
+  {
+    "id": "merch_08",
+    "name": "T-Shirt (Style 1)",
+    "description": "Classic white tee with the Scameleon mascot.",
+    "price": 400,
+    "stock": 150,
+    "images": ["src/assets/ScameleonMerch/TShirt-1.png"]
+  },
+  {
+    "id": "merch_09",
+    "name": "T-Shirt (Style 2)",
+    "description": "Classic white tee with the Scameleon logo.",
+    "price": 450,
+    "stock": 45,
+    "images": ["src/assets/ScameleonMerch/TShirt-2.png"]
+  },
+  {
+    "id": "merch_10",
+    "name": "Mug",
+    "description": "Start your day scam-free with a cup of coffee in this mug.",
+    "price": 500,
+    "stock": 80,
+    "images": ["src/assets/ScameleonMerch/Mug-1.png"]
+  },
+  {
+    "id": "merch_11",
+    "name": "Enamel Pins",
+    "description": "Show off your scam awareness with these stylish enamel pins.",
+    "price": 650,
+    "stock": 80,
+    "images": ["src/assets/ScameleonMerch/EnamelPins-1.png"]
+  },
+  {
+    "id": "merch_12",
+    "name": "Scameleon Plushie",
+    "description": "A cuddly Scameleon plushie to keep you company.",
+    "price": 3000,
+    "stock": 80,
+    "images": [
+      "src/assets/ScameleonMerch/Plushie-1.png",
+      "src/assets/ScameleonMerch/Plushie-2.png",
+      "src/assets/ScameleonMerch/Plushie-3.png"
+    ]
+  }
+]

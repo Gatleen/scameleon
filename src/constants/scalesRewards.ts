@@ -1,0 +1,4 @@
+export const SCALE_REWARDS = {
+  DAILY_QUIZ_CORRECT: 8,
+  DAILY_QUIZ_WRONG: 3,
+};

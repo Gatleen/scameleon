@@ -1,0 +1,355 @@
+{
+  "worldId": "call_of_the_ocean",
+  "worldName": "Call of the Ocean",
+  "villain": "Claws the Crab",
+  "levels": [
+    {
+      "levelId": "level-9",
+      "title": "Common Scam Call Patterns",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "A common tactic used by scam callers is:",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Speaking slowly and politely with no requests"
+            },
+            {
+              "id": "b",
+              "text": "Creating urgency or fear to pressure you into action"
+            },
+            { "id": "c", "text": "Asking about your hobbies" },
+            { "id": "d", "text": "Providing official documentation" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Scammers often use fear or urgency to rush you into making mistakes."
+        },
+        {
+          "id": "q2",
+          "text": "Which of these is a red flag in a phone call?",
+          "choices": [
+            { "id": "a", "text": "Call from a saved contact" },
+            {
+              "id": "b",
+              "text": "Caller asks for personal or financial information immediately"
+            },
+            { "id": "c", "text": "You recognize the caller’s voice" },
+            { "id": "d", "text": "Caller only leaves a voicemail" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Requests for sensitive info right away are a major red flag."
+        },
+        {
+          "id": "q3",
+          "text": "How should you respond if an unknown caller claims to be from your bank?",
+          "choices": [
+            { "id": "a", "text": "Give them your account number to verify" },
+            {
+              "id": "b",
+              "text": "Hang up and call your bank using official numbers"
+            },
+            { "id": "c", "text": "Ask for their employee ID and trust it" },
+            { "id": "d", "text": "Confirm details via text message" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Always contact your bank using trusted phone numbers or apps to verify."
+        },
+        {
+          "id": "q4",
+          "text": "Scammers may often:",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Send an official-looking letter after the call"
+            },
+            {
+              "id": "b",
+              "text": "Pretend to be authorities or companies you know"
+            },
+            { "id": "c", "text": "Speak with your family first" },
+            {
+              "id": "d",
+              "text": "Offer free technical support without asking for info"
+            }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Impersonation of authorities or trusted companies is common in phone scams."
+        },
+        {
+          "id": "q5",
+          "text": "If a call makes you uncomfortable or seems suspicious, the safest step is:",
+          "choices": [
+            { "id": "a", "text": "Continue talking politely" },
+            { "id": "b", "text": "Hang up and report it if needed" },
+            { "id": "c", "text": "Ask them to call back later" },
+            { "id": "d", "text": "Call a friend to confirm" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Hanging up and reporting helps protect you and others from scams."
+        }
+      ]
+    },
+    {
+      "levelId": "level-10",
+      "title": "Government Calls",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "A government scam call might claim:",
+          "choices": [
+            { "id": "a", "text": "You won a contest legally registered" },
+            {
+              "id": "b",
+              "text": "You owe unpaid taxes and must pay immediately"
+            },
+            { "id": "c", "text": "You are invited to a seminar" },
+            { "id": "d", "text": "Your mail has arrived" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Scammers often use threats about taxes or legal action to scare victims."
+        },
+        {
+          "id": "q2",
+          "text": "How can you verify a government-related call?",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Provide your social security or tax number to confirm"
+            },
+            {
+              "id": "b",
+              "text": "Hang up and contact the official agency directly using their published numbers"
+            },
+            { "id": "c", "text": "Click any link sent in a follow-up SMS" },
+            { "id": "d", "text": "Call the number the caller provided" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Use official contact details from the agency's website to verify; don't use caller-provided numbers."
+        },
+        {
+          "id": "q3",
+          "text": "Threats in a government scam call often include:",
+          "choices": [
+            { "id": "a", "text": "Offering rewards and incentives" },
+            {
+              "id": "b",
+              "text": "Arrest, fines, or account seizure if you don’t comply"
+            },
+            { "id": "c", "text": "Requests to meet in person casually" },
+            { "id": "d", "text": "Asking about hobbies or surveys" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Scammers use fear of legal consequences to force quick payment or disclosure."
+        },
+        {
+          "id": "q4",
+          "text": "Which is a safe practice when receiving a suspicious government call?",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Do not provide personal info and verify with the agency directly"
+            },
+            { "id": "b", "text": "Follow instructions to avoid trouble" },
+            { "id": "c", "text": "Transfer the call to voicemail" },
+            { "id": "d", "text": "Give minimal info and hope it’s fine" }
+          ],
+          "correctChoiceId": "a",
+          "explanation": "Never give personal details over the phone; always verify independently."
+        },
+        {
+          "id": "q5",
+          "text": "Red flags in government scam calls include:",
+          "choices": [
+            { "id": "a", "text": "Caller’s phone number is official-looking" },
+            {
+              "id": "b",
+              "text": "Calls demanding immediate payment over the phone"
+            },
+            { "id": "c", "text": "Caller refers to published procedures" },
+            { "id": "d", "text": "Email confirmation from the agency" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Legitimate agencies rarely demand instant payments by phone."
+        }
+      ]
+    },
+    {
+      "levelId": "level-11",
+      "title": "Tech Support Calls",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "A common tech support scam tactic is:",
+          "choices": [
+            { "id": "a", "text": "Offering free updates only" },
+            {
+              "id": "b",
+              "text": "Claiming your computer is infected and needs immediate payment"
+            },
+            {
+              "id": "c",
+              "text": "Providing detailed, helpful advice without asking for info"
+            },
+            { "id": "d", "text": "Offering tutorials on software" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Scammers often falsely claim infection to get money or remote access."
+        },
+        {
+          "id": "q2",
+          "text": "What should you never do during a suspicious tech support call?",
+          "choices": [
+            { "id": "a", "text": "Take notes about the problem" },
+            { "id": "b", "text": "Grant remote access to your computer" },
+            { "id": "c", "text": "Ask questions for clarification" },
+            { "id": "d", "text": "Hang up" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Granting remote access can let scammers install malware or steal data."
+        },
+        {
+          "id": "q3",
+          "text": "Legitimate tech companies usually:",
+          "choices": [
+            { "id": "a", "text": "Call randomly and demand money" },
+            {
+              "id": "b",
+              "text": "Only provide support if you initiated contact"
+            },
+            { "id": "c", "text": "Ask for credit card numbers upfront" },
+            { "id": "d", "text": "Use aggressive scare tactics" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Real companies generally respond to support requests you made, not unsolicited calls demanding payment."
+        },
+        {
+          "id": "q4",
+          "text": "Which statement is a red flag in a tech support scam?",
+          "choices": [
+            {
+              "id": "a",
+              "text": "“We noticed unusual activity on your account”"
+            },
+            {
+              "id": "b",
+              "text": "“Call now or your computer will be blocked forever”"
+            },
+            { "id": "c", "text": "“Check your system for updates”" },
+            {
+              "id": "d",
+              "text": "“Please contact our support at your convenience”"
+            }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Scare tactics threatening permanent damage are often used by scammers."
+        },
+        {
+          "id": "q5",
+          "text": "The safest action when you get a suspicious tech support call is:",
+          "choices": [
+            { "id": "a", "text": "Follow their instructions to be safe" },
+            {
+              "id": "b",
+              "text": "Hang up and contact your tech provider through official channels"
+            },
+            { "id": "c", "text": "Give a temporary password" },
+            { "id": "d", "text": "Note their name and call back later" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Verify issues through official support channels rather than following unsolicited instructions."
+        }
+      ]
+    },
+    {
+      "levelId": "level-12",
+      "title": "Investment / Crypto Calls",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "A common red flag in investment scam calls is:",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Offering verified financial advice through banks"
+            },
+            {
+              "id": "b",
+              "text": "Promising unusually high returns with no risk"
+            },
+            { "id": "c", "text": "Asking about your budget for retirement" },
+            { "id": "d", "text": "Sending information via official email" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Guarantees of high returns with no risk are classic investment scam red flags."
+        },
+        {
+          "id": "q2",
+          "text": "Which of these is a safe step when receiving an investment call?",
+          "choices": [
+            { "id": "a", "text": "Invest immediately to secure gains" },
+            {
+              "id": "b",
+              "text": "Research the company independently before acting"
+            },
+            { "id": "c", "text": "Share your bank details to open an account" },
+            {
+              "id": "d",
+              "text": "Follow caller’s instructions for registration"
+            }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Independent research helps confirm whether an offer is legitimate."
+        },
+        {
+          "id": "q3",
+          "text": "Scammers often:",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Recommend only government-approved investments"
+            },
+            { "id": "b", "text": "Pressure you to act fast and not think" },
+            { "id": "c", "text": "Ask your opinion about the stock market" },
+            { "id": "d", "text": "Suggest checking reviews online" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "High-pressure tactics are used to stop you from researching or thinking carefully."
+        },
+        {
+          "id": "q4",
+          "text": "Which is a suspicious offer?",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Long-term investment advice from your financial advisor"
+            },
+            {
+              "id": "b",
+              "text": "“Double your money in a week with this crypto deal”"
+            },
+            { "id": "c", "text": "Pension planning tips" },
+            { "id": "d", "text": "Verified mutual fund options" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Promises of extreme, fast returns are typical signs of scams."
+        },
+        {
+          "id": "q5",
+          "text": "The safest reaction to a suspicious crypto or investment call is:",
+          "choices": [
+            { "id": "a", "text": "Give your bank info cautiously" },
+            {
+              "id": "b",
+              "text": "Hang up and report or research independently"
+            },
+            { "id": "c", "text": "Ask for references only" },
+            { "id": "d", "text": "Forward the offer to friends" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Stop communication, report suspicious calls, and verify offers through trusted sources."
+        }
+      ]
+    }
+  ]
+}

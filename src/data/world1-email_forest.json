@@ -1,0 +1,274 @@
+{
+  "worldId": "email_forest",
+  "worldName": "Email Forest",
+  "villain": "Phishy the Fish",
+  "levels": [
+    {
+      "levelId": "level-1",
+      "title": "Basics of Scam Emails",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "You receive an email saying you won a lucky draw you never joined. What should you do?",
+          "choices": [
+            { "id": "a", "text": "Reply and ask how to claim it." },
+            { "id": "b", "text": "Click the link to see what you won." },
+            { "id": "c", "text": "Delete or ignore the email." },
+            { "id": "d", "text": "Forward it to friends." }
+          ],
+          "correctChoiceId": "c",
+          "explanation": "If you didn't sign up for a contest, it's fake. Delete it."
+        },
+        {
+          "id": "q2",
+          "text": "A scam email often tries to make you act quickly. What is this tactic called?",
+          "choices": [
+            { "id": "a", "text": "Urgency tactic" },
+            { "id": "b", "text": "Friendly reminder" },
+            { "id": "c", "text": "Marketing strategy" },
+            { "id": "d", "text": "Customer support alert" }
+          ],
+          "correctChoiceId": "a",
+          "explanation": "Scammers use urgency to push you into acting without thinking."
+        },
+        {
+          "id": "q3",
+          "text": "Which of the following is a red flag of a scam email?",
+          "choices": [
+            { "id": "a", "text": "Your name is spelled correctly" },
+            { "id": "b", "text": "Email has official company logo" },
+            { "id": "c", "text": "Requesting personal information" },
+            { "id": "d", "text": "Email contains polite language" }
+          ],
+          "correctChoiceId": "c",
+          "explanation": "Legitimate companies will never ask for personal details via email."
+        },
+        {
+          "id": "q4",
+          "text": "An email says your bank account will be frozen unless you respond immediately. What should you do first?",
+          "choices": [
+            { "id": "a", "text": "Click the link in the email." },
+            { "id": "b", "text": "Call your bank using the official number." },
+            { "id": "c", "text": "Reply asking for more details." },
+            { "id": "d", "text": "Forward it to everyone for safety." }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Always verify with the official bank number, not the email."
+        },
+        {
+          "id": "q5",
+          "text": "Why do scammers pretend to be well-known companies?",
+          "choices": [
+            { "id": "a", "text": "To appear more trustworthy" },
+            { "id": "b", "text": "To advertise the company" },
+            { "id": "c", "text": "To send surveys" },
+            { "id": "d", "text": "To welcome you as a new customer" }
+          ],
+          "correctChoiceId": "a",
+          "explanation": "Familiar brands make victims drop their guard."
+        }
+      ]
+    },
+    {
+      "levelId": "level-2",
+      "title": "Recognizing Suspicious Senders",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Which sender address looks suspicious?",
+          "choices": [
+            { "id": "a", "text": "support@maybank.com" },
+            { "id": "b", "text": "help@google.com" },
+            { "id": "c", "text": "secure-update@maybank.verify-login.com" },
+            { "id": "id", "text": "info@shopee.com" }
+          ],
+          "correctChoiceId": "c",
+          "explanation": "Scammers add extra words or fake subdomains to appear legit."
+        },
+        {
+          "id": "q2",
+          "text": "A scammer's email often contains…",
+          "choices": [
+            { "id": "a", "text": "Random numbers in the address" },
+            { "id": "b", "text": "Very short email address" },
+            { "id": "c", "text": "Email ending with .gov" },
+            { "id": "d", "text": "Email ending with .edu" }
+          ],
+          "correctChoiceId": "a",
+          "explanation": "Random numbers or strange words indicate fake accounts."
+        },
+        {
+          "id": "q3",
+          "text": "Which is a safe action when unsure of a sender?",
+          "choices": [
+            { "id": "a", "text": "Click the link first to check." },
+            { "id": "b", "text": "Open attachments to see what they are." },
+            { "id": "c", "text": "Search the sender email online." },
+            { "id": "d", "text": "Reply to ask if they're real." }
+          ],
+          "correctChoiceId": "c",
+          "explanation": "Searching can show reports of known scam emails."
+        },
+        {
+          "id": "q4",
+          "text": "Your friend’s account may be hacked if…",
+          "choices": [
+            { "id": "a", "text": "They email you at 3 AM." },
+            { "id": "b", "text": "Their email asks for urgent money help." },
+            { "id": "c", "text": "They send you a birthday wish." },
+            { "id": "d", "text": "Their email contains typos." }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Hacked accounts often send emergency money requests."
+        },
+        {
+          "id": "q5",
+          "text": "What is the safest first step when receiving an email from a sender you don’t recognize?",
+          "choices": [
+            { "id": "a", "text": "Ignore or delete it." },
+            { "id": "b", "text": "Click any link to verify." },
+            { "id": "c", "text": "Reply politely." },
+            { "id": "d", "text": "Forward it to others." }
+          ],
+          "correctChoiceId": "a",
+          "explanation": "Unknown senders = risk. Best to delete."
+        }
+      ]
+    },
+    {
+      "levelId": "level-3",
+      "title": "Fake Links & URLs",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Which link looks suspicious?",
+          "choices": [
+            { "id": "a", "text": "https://www.paypal.com" },
+            { "id": "b", "text": "https://paypa1-secure-login.com" },
+            { "id": "c", "text": "https://www.maybank2u.com.my" },
+            { "id": "d", "text": "https://accounts.google.com" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Using number 1 instead of l (paypa1) is a common trick."
+        },
+        {
+          "id": "q2",
+          "text": "A scam link often uses…",
+          "choices": [
+            { "id": "a", "text": "Shortened URLs like bit.ly" },
+            { "id": "b", "text": "Long descriptive names" },
+            { "id": "c", "text": "Official government domains" },
+            { "id": "d", "text": "Safe browsing icons" }
+          ],
+          "correctChoiceId": "a",
+          "explanation": "Scammers hide real destinations with URL shorteners."
+        },
+        {
+          "id": "q3",
+          "text": "Why is hovering over a link useful?",
+          "choices": [
+            { "id": "a", "text": "It makes the link open automatically." },
+            {
+              "id": "b",
+              "text": "It shows the real URL at the bottom of the screen."
+            },
+            { "id": "c", "text": "It sends the website your data." },
+            { "id": "d", "text": "It logs you out." }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Hovering reveals where the link actually goes."
+        },
+        {
+          "id": "q4",
+          "text": "A secure website usually starts with:",
+          "choices": [
+            { "id": "a", "text": "http://" },
+            { "id": "b", "text": "ftp://" },
+            { "id": "c", "text": "https://" },
+            { "id": "d", "text": "www://" }
+          ],
+          "correctChoiceId": "c",
+          "explanation": "HTTPS means encrypted connection."
+        },
+        {
+          "id": "q5",
+          "text": "Fake login pages often look real. What’s the safest step?",
+          "choices": [
+            { "id": "a", "text": "Type your password to test it." },
+            { "id": "b", "text": "Check the URL carefully." },
+            { "id": "c", "text": "Check logo size only." },
+            { "id": "d", "text": "Bookmark it." }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "The URL is the main indicator of authenticity."
+        }
+      ]
+    },
+    {
+      "levelId": "level-4",
+      "title": "Attachments & Malware",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Which attachment is MOST risky?",
+          "choices": [
+            { "id": "a", "text": "invoice.pdf" },
+            { "id": "b", "text": "payment-details.exe" },
+            { "id": "c", "text": "photo.jpg" },
+            { "id": "d", "text": "receipt.png" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Executable files (.exe) can contain malware."
+        },
+        {
+          "id": "q2",
+          "text": "Your email provider warns that an attachment looks dangerous. What should you do?",
+          "choices": [
+            { "id": "a", "text": "Download it anyway." },
+            { "id": "b", "text": "Ignore the warning." },
+            { "id": "c", "text": "Delete the email." },
+            { "id": "d", "text": "Forward the attachment to a friend." }
+          ],
+          "correctChoiceId": "c",
+          "explanation": "Provider warnings are there for a reason — delete."
+        },
+        {
+          "id": "q3",
+          "text": "A scam email says your package can’t be delivered and includes a file to 'update your address.' What should you do?",
+          "choices": [
+            { "id": "a", "text": "Open the file." },
+            { "id": "b", "text": "Check your real tracking app or website." },
+            { "id": "c", "text": "Reply for info." },
+            { "id": "d", "text": "Save the file for later." }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Always verify with the official delivery app."
+        },
+        {
+          "id": "q4",
+          "text": "Why are ZIP attachments dangerous?",
+          "choices": [
+            { "id": "a", "text": "They take up storage." },
+            { "id": "b", "text": "They may contain hidden malware." },
+            { "id": "c", "text": "They open very slowly." },
+            { "id": "d", "text": "They require Wi-Fi." }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "ZIP files can bundle harmful scripts."
+        },
+        {
+          "id": "q5",
+          "text": "You receive an attachment claiming to be your 'payment receipt' but you never made a purchase. What should you do?",
+          "choices": [
+            { "id": "a", "text": "Open it to check." },
+            { "id": "b", "text": "Delete the email." },
+            { "id": "c", "text": "Send it to your boss." },
+            { "id": "d", "text": "Print it." }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Unsolicited payment files are often malware."
+        }
+      ]
+    }
+  ]
+}

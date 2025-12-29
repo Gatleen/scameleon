@@ -1,0 +1,281 @@
+{
+  "title": "Daily Scam Awareness Quiz",
+  "questions": [
+    {
+      "question": "You receive a WhatsApp message claiming to be from Maybank asking you to verify your account via a link. What should you do?",
+      "options": [
+        "Click the link immediately",
+        "Reply asking for confirmation",
+        "Ignore the message and contact Maybank through official channels",
+        "Forward the message to friends"
+      ],
+      "correctIndex": 2,
+      "explanation": "Banks in Malaysia never ask for personal details or verification through WhatsApp links."
+    },
+    {
+      "question": "An SMS says your Shopee delivery is on hold and asks you to click a link. What is the safest action?",
+      "options": [
+        "Click the link to check",
+        "Ignore it and check the Shopee app directly",
+        "Reply STOP",
+        "Call the number in the SMS"
+      ],
+      "correctIndex": 1,
+      "explanation": "Always check delivery status through the official app, not links in SMS."
+    },
+    {
+      "question": "Someone calls claiming to be from LHDN saying you owe unpaid tax and must pay immediately. This is likely:",
+      "options": [
+        "A real LHDN procedure",
+        "A harmless reminder",
+        "A scam call",
+        "A bank verification"
+      ],
+      "correctIndex": 2,
+      "explanation": "LHDN does not demand immediate payment over phone calls."
+    },
+    {
+      "question": "You receive a call saying your bank account will be frozen unless you transfer money now. What is this tactic called?",
+      "options": [
+        "Investment scam",
+        "Urgency scam",
+        "Survey scam",
+        "Lucky draw scam"
+      ],
+      "correctIndex": 1,
+      "explanation": "Scammers create fear and urgency to pressure victims into quick action."
+    },
+    {
+      "question": "A stranger messages you saying your child is in trouble and needs money urgently. What should you do first?",
+      "options": [
+        "Transfer money immediately",
+        "Call your child directly to confirm",
+        "Reply asking for details",
+        "Ignore and delete"
+      ],
+      "correctIndex": 1,
+      "explanation": "Always verify with family members directly before taking action."
+    },
+    {
+      "question": "Which of the following is a common sign of a fake investment scam?",
+      "options": [
+        "Guaranteed high returns",
+        "Risk explanation provided",
+        "Registered company number",
+        "Long-term investment plan"
+      ],
+      "correctIndex": 0,
+      "explanation": "No legitimate investment guarantees high returns with no risk."
+    },
+    {
+      "question": "You see a Facebook ad offering fast loans with no documents needed. This is most likely:",
+      "options": [
+        "A legal loan service",
+        "A government aid program",
+        "A scam or illegal loan",
+        "A bank promotion"
+      ],
+      "correctIndex": 2,
+      "explanation": "Legitimate loans in Malaysia require identity and income verification."
+    },
+    {
+      "question": "Which platform do scammers in Malaysia commonly use to impersonate family members?",
+      "options": ["Email", "WhatsApp", "LinkedIn", "Pinterest"],
+      "correctIndex": 1,
+      "explanation": "WhatsApp is commonly used for impersonation and emergency scams."
+    },
+    {
+      "question": "A message says you won a lucky draw but must pay a processing fee. What does this indicate?",
+      "options": [
+        "Legitimate prize",
+        "Marketing promotion",
+        "Scam",
+        "Government reward"
+      ],
+      "correctIndex": 2,
+      "explanation": "Real prizes do not require upfront payments."
+    },
+    {
+      "question": "Which action helps protect you from online scams?",
+      "options": [
+        "Sharing OTP with trusted callers",
+        "Using the same password everywhere",
+        "Enabling two-factor authentication",
+        "Clicking links quickly"
+      ],
+      "correctIndex": 2,
+      "explanation": "Two-factor authentication adds an extra layer of security."
+    },
+    {
+      "question": "You receive a call claiming to be from the police asking for bank details. What should you do?",
+      "options": [
+        "Provide details to avoid trouble",
+        "Hang up and report the call",
+        "Transfer money immediately",
+        "Continue the conversation"
+      ],
+      "correctIndex": 1,
+      "explanation": "Police will never ask for bank details over phone calls."
+    },
+    {
+      "question": "Why do scammers often ask victims to keep the call confidential?",
+      "options": [
+        "For privacy reasons",
+        "To avoid delays",
+        "To prevent others from warning the victim",
+        "Because it is company policy"
+      ],
+      "correctIndex": 2,
+      "explanation": "Scammers isolate victims to stop them from verifying the situation."
+    },
+    {
+      "question": "Which of the following is safest when receiving unexpected messages?",
+      "options": [
+        "Reply immediately",
+        "Click links to check",
+        "Verify through official sources",
+        "Forward to friends"
+      ],
+      "correctIndex": 2,
+      "explanation": "Verification through official channels reduces scam risk."
+    },
+    {
+      "question": "A message claims to be from Pos Malaysia requesting payment via a link. What should you do?",
+      "options": [
+        "Pay immediately",
+        "Ignore and check Pos Malaysia official website",
+        "Reply asking for tracking number",
+        "Save the link"
+      ],
+      "correctIndex": 1,
+      "explanation": "Always verify delivery issues through official websites or apps."
+    },
+    {
+      "question": "Which information should never be shared with anyone?",
+      "options": [
+        "Bank branch name",
+        "OTP or TAC code",
+        "Customer service hotline",
+        "Transaction receipt"
+      ],
+      "correctIndex": 1,
+      "explanation": "OTP/TAC codes give full access to your account."
+    },
+    {
+      "question": "Why are older adults often targeted by scammers?",
+      "options": [
+        "They use social media more",
+        "They are careless",
+        "They are more trusting and less familiar with scams",
+        "They shop online frequently"
+      ],
+      "correctIndex": 2,
+      "explanation": "Scammers exploit trust and lack of scam awareness."
+    },
+    {
+      "question": "You are unsure whether a message is real or fake. What is the best next step?",
+      "options": [
+        "Ignore it completely",
+        "Act quickly just in case",
+        "Ask a trusted family member or check official sources",
+        "Reply to the sender"
+      ],
+      "correctIndex": 2,
+      "explanation": "Second opinions and verification help prevent scams."
+    },
+    {
+      "question": "Which agency can Malaysians report scams to?",
+      "options": [
+        "Jabatan Imigresen",
+        "PDRM or National Scam Response Centre (NSRC)",
+        "JPJ",
+        "KWSP"
+      ],
+      "correctIndex": 1,
+      "explanation": "Scams should be reported to PDRM or NSRC for action."
+    },
+    {
+      "question": "What is a common emotional trigger used by scammers?",
+      "options": ["Happiness", "Curiosity", "Fear and panic", "Boredom"],
+      "correctIndex": 2,
+      "explanation": "Fear and panic push victims to act without thinking."
+    },
+    {
+      "question": "Which habit helps reduce the risk of being scammed?",
+      "options": [
+        "Trusting all official-looking messages",
+        "Taking time to verify before acting",
+        "Sharing messages for opinions after paying",
+        "Ignoring security updates"
+      ],
+      "correctIndex": 1,
+      "explanation": "Slowing down and verifying information is key to scam prevention."
+    },
+    {
+      "question": "You receive an email claiming you won a contest you didn’t enter. What should you do?",
+      "options": [
+        "Click the link to claim your prize",
+        "Ignore the email and delete it",
+        "Forward it to friends for verification",
+        "Reply asking for details"
+      ],
+      "correctIndex": 1,
+      "explanation": "Legitimate contests only notify actual participants, never unsolicited winners."
+    },
+    {
+      "question": "A caller offers you a job and asks for your bank account to deposit a training fee. What should you do?",
+      "options": [
+        "Provide your account immediately",
+        "Verify the company and job offer officially",
+        "Pay the fee to secure the job",
+        "Ignore and hang up"
+      ],
+      "correctIndex": 1,
+      "explanation": "Legitimate companies do not require upfront fees for employment."
+    },
+    {
+      "question": "You are asked to download an app to verify your identity for a prize. What is the safest action?",
+      "options": [
+        "Download and install immediately",
+        "Check official channels before downloading",
+        "Forward to friends to verify",
+        "Ignore and click links in email"
+      ],
+      "correctIndex": 1,
+      "explanation": "Always verify apps through official sources to avoid malware and scams."
+    },
+    {
+      "question": "Someone offers you a cryptocurrency investment promising huge returns in 24 hours. What should you suspect?",
+      "options": [
+        "A safe investment",
+        "A scam or Ponzi scheme",
+        "A government-approved scheme",
+        "A small legitimate profit opportunity"
+      ],
+      "correctIndex": 1,
+      "explanation": "Guaranteed quick profits in crypto are almost always scams."
+    },
+    {
+      "question": "You receive a message from a 'friend' asking for urgent money but the style is off. What should you do?",
+      "options": [
+        "Send money immediately",
+        "Contact your friend via another method to confirm",
+        "Ignore it",
+        "Post about it on social media"
+      ],
+      "correctIndex": 1,
+      "explanation": "Always verify directly with the person before sending money."
+    },
+    {
+      "question": "An unknown person asks you to click a link to claim your tax refund. What is the safest action?",
+      "options": [
+        "Click the link",
+        "Verify with official tax agency channels",
+        "Reply asking for proof",
+        "Share with others to confirm"
+      ],
+      "correctIndex": 1,
+      "explanation": "Always use official agency channels for tax matters."
+    }
+  ]
+}

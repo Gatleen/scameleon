@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "question": "What is Scameleon?",
+    "answer": "Scameleon is an anti-scam awareness platform designed to help users recognize, understand, and avoid online scams."
+  },
+  {
+    "id": 2,
+    "question": "Who is Scameleon for?",
+    "answer": "Scameleon is designed for middle-aged working adults, but is open to all users."
+  },
+  {
+    "id": 3,
+    "question": "What types of scams does Scameleon cover?",
+    "intro": "Scameleon covers many common scams, including:",
+    "bullets": [
+      "Romance scams",
+      "Online shopping scams",
+      "Investment and crypto scams",
+      "Impersonation scams",
+      "Phishing scams"
+    ]
+  },
+  {
+    "id": 4,
+    "question": "Does Scameleon stop scams automatically?",
+    "answer": "No. Scameleon focuses on education and awareness rather than blocking scammers."
+  },
+  {
+    "id": 5,
+    "question": "Is Scameleon free to use?",
+    "answer": "Yes. Scameleon is an educational platform created to promote digital safety and awareness at no cost."
+  },
+  {
+    "id": 6,
+    "question": "Do I need to create an account?",
+    "answer": "Yes. Scameleon is designed to provide a personalized experience."
+  },
+  {
+    "id": 7,
+    "question": "Is my personal information safe?",
+    "intro": "Yes. Scameleon is designed with user privacy and safety in mind. It:",
+    "bullets": [
+      "Does not sell user data",
+      "Stores information securely",
+      "Encourages users not to share sensitive personal details in public areas"
+    ],
+    "note": "Users are also advised never to post bank details, passwords, or identification numbers."
+  },
+  {
+    "id": 9,
+    "question": "Can I report a scam through Scameleon?",
+    "intro": "Scameleon provides guidance on how and where to report scams, such as:",
+    "bullets": [
+      "Banks",
+      "Telecommunications providers",
+      "Official authorities"
+    ],
+    "note": "However, Scameleon itself is not a law enforcement agency."
+  },
+  {
+    "id": 10,
+    "question": "Are the scam examples real?",
+    "intro": "Yes. The examples are based on:",
+    "bullets": [
+      "Real scam patterns",
+      "Public reports",
+      "Common tactics used by scammers"
+    ],
+    "note": "Some details may be simplified or anonymized for safety and clarity."
+  },
+  {
+    "id": 11,
+    "question": "Why is Scameleon important?",
+    "bullets": [
+      "Scams rely on fear, urgency, and emotional manipulation",
+      "Scameleon helps users slow down, recognize red flags, and make safer decisions online"
+    ]
+  },
+  {
+    "id": 12,
+    "question": "How can I get help or support?",
+    "intro": "If you need help or have questions:",
+    "bullets": ["Check the FAQ", "Contact support via email"]
+  }
+]

@@ -1,0 +1,340 @@
+{
+  "worldId": "web_trap_jungle",
+  "worldName": "Web Trap Jungle",
+  "villain": "Web Widow the Spider",
+  "levels": [
+    {
+      "levelId": "level-13",
+      "title": "Fake Shopping Sites",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Which of these is a red flag for a fake shopping website?",
+          "choices": [
+            { "id": "a", "text": "Well-known brand logos" },
+            {
+              "id": "b",
+              "text": "Prices that are unusually low for luxury items"
+            },
+            { "id": "c", "text": "Clear product descriptions" },
+            { "id": "d", "text": "Reviews from verified buyers" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Unrealistically low prices are often used to lure buyers to fake stores."
+        },
+        {
+          "id": "q2",
+          "text": "Before making a purchase on a new website, you should:",
+          "choices": [
+            { "id": "a", "text": "Enter your card immediately" },
+            {
+              "id": "b",
+              "text": "Verify the site’s URL and look for reviews online"
+            },
+            { "id": "c", "text": "Trust a link shared on social media" },
+            {
+              "id": "d",
+              "text": "Assume the site is safe because it looks professional"
+            }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Check the URL and reviews to confirm a site’s legitimacy before paying."
+        },
+        {
+          "id": "q3",
+          "text": "A suspicious website may:",
+          "choices": [
+            { "id": "a", "text": "Offer secure checkout with HTTPS" },
+            {
+              "id": "b",
+              "text": "Lack contact information or a customer service phone number"
+            },
+            { "id": "c", "text": "Include terms and conditions" },
+            { "id": "d", "text": "Show a privacy policy" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Missing contact details or support is a common sign of a fraudulent site."
+        },
+        {
+          "id": "q4",
+          "text": "Which URL is likely legitimate?",
+          "choices": [
+            { "id": "a", "text": "https://www.nike.com" },
+            { "id": "b", "text": "https://www.n1ke-sale.com" },
+            { "id": "c", "text": "http://n1ke-deals.xyz" },
+            { "id": "d", "text": "http://freestuff.nike.fake.com" }
+          ],
+          "correctChoiceId": "a",
+          "explanation": "Official brand domains (correct spelling, HTTPS) indicate legitimacy."
+        },
+        {
+          "id": "q5",
+          "text": "To stay safe when shopping online, you should:",
+          "choices": [
+            { "id": "a", "text": "Use a friend’s account to buy items" },
+            {
+              "id": "b",
+              "text": "Only enter payment details on verified, HTTPS-secured websites"
+            },
+            {
+              "id": "c",
+              "text": "Click links in unsolicited emails offering discounts"
+            },
+            {
+              "id": "d",
+              "text": "Trust the site if it looks visually appealing"
+            }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Only enter payment details on secure, verified checkout pages (HTTPS + trusted gateway)."
+        }
+      ]
+    },
+    {
+      "levelId": "level-14",
+      "title": "Fake Login Pages",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Which of the following is a sign of a fake login page?",
+          "choices": [
+            { "id": "a", "text": "Correct spelling and logos" },
+            { "id": "b", "text": "URL does not match the official website" },
+            { "id": "c", "text": "“Remember me” option present" },
+            { "id": "d", "text": "Secure HTTPS connection" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "A mismatched or misleading URL strongly suggests a phishing page."
+        },
+        {
+          "id": "q2",
+          "text": "What should you do if you are unsure about a login page’s authenticity?",
+          "choices": [
+            { "id": "a", "text": "Enter your credentials carefully" },
+            {
+              "id": "b",
+              "text": "Go directly to the website by typing the URL manually"
+            },
+            { "id": "c", "text": "Ask a friend to log in for you" },
+            { "id": "d", "text": "Click links from emails to verify" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Typing the known URL prevents landing on spoofed pages linked in emails or ads."
+        },
+        {
+          "id": "q3",
+          "text": "A phishing login page may try to:",
+          "choices": [
+            { "id": "a", "text": "Provide legitimate account access" },
+            { "id": "b", "text": "Steal your username and password" },
+            { "id": "c", "text": "Offer technical support" },
+            { "id": "d", "text": "Display official company news" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Phishing pages are designed to capture credentials for later misuse."
+        },
+        {
+          "id": "q4",
+          "text": "Which is a safe login practice?",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Use the same password for multiple websites"
+            },
+            {
+              "id": "b",
+              "text": "Enable two-factor authentication (2FA) on your accounts"
+            },
+            {
+              "id": "c",
+              "text": "Enter your password only when prompted via email links"
+            },
+            { "id": "d", "text": "Keep your password in a shared document" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "2FA adds an extra layer of protection even if a password is compromised."
+        },
+        {
+          "id": "q5",
+          "text": "If you suspect a fake login page, you should:",
+          "choices": [
+            { "id": "a", "text": "Continue logging in carefully" },
+            {
+              "id": "b",
+              "text": "Reply to the website owner for confirmation"
+            },
+            { "id": "c", "text": "Close the page and report it if possible" },
+            { "id": "d", "text": "Ignore it but keep your credentials ready" }
+          ],
+          "correctChoiceId": "c",
+          "explanation": "Close the page and report phishing to help block the site and protect others."
+        }
+      ]
+    },
+    {
+      "levelId": "level-15",
+      "title": "Phishing Pop-ups",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Which pop-up is most likely a phishing attempt?",
+          "choices": [
+            { "id": "a", "text": "“Your software is up to date”" },
+            {
+              "id": "b",
+              "text": "“Your computer is infected! Click here to fix immediately”"
+            },
+            { "id": "c", "text": "“Subscription confirmed”" },
+            { "id": "d", "text": "“Welcome to our website”" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Scare pop-ups urging immediate action often try to trick you into installing malware."
+        },
+        {
+          "id": "q2",
+          "text": "What is the safest action when encountering a suspicious pop-up?",
+          "choices": [
+            { "id": "a", "text": "Click it to see what happens" },
+            {
+              "id": "b",
+              "text": "Close it using the browser’s X button or Task Manager"
+            },
+            { "id": "c", "text": "Enter your login info to continue" },
+            { "id": "d", "text": "Share the pop-up with friends" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Closing the pop-up without interacting avoids accidental downloads or redirects."
+        },
+        {
+          "id": "q3",
+          "text": "A red flag in pop-ups includes:",
+          "choices": [
+            { "id": "a", "text": "Correct branding" },
+            {
+              "id": "b",
+              "text": "Urgent messages asking for personal information"
+            },
+            { "id": "c", "text": "Links to help documentation" },
+            { "id": "d", "text": "Standard browser notifications" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Urgent requests for personal data through pop-ups are suspicious and unsafe."
+        },
+        {
+          "id": "q4",
+          "text": "Which method helps prevent phishing pop-ups?",
+          "choices": [
+            { "id": "a", "text": "Keep your browser and antivirus updated" },
+            { "id": "b", "text": "Click all links carefully" },
+            { "id": "c", "text": "Download any software it recommends" },
+            { "id": "d", "text": "Reply to the pop-up to ask if it’s real" }
+          ],
+          "correctChoiceId": "a",
+          "explanation": "Keeping software updated reduces vulnerabilities that pop-ups may exploit."
+        },
+        {
+          "id": "q5",
+          "text": "Legitimate websites usually:",
+          "choices": [
+            { "id": "a", "text": "Use aggressive pop-ups for urgent warnings" },
+            {
+              "id": "b",
+              "text": "Do not ask for passwords or payment info in pop-ups"
+            },
+            { "id": "c", "text": "Redirect you to unknown sites randomly" },
+            { "id": "d", "text": "Offer prizes for clicking immediately" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Real sites avoid requesting sensitive info through intrusive pop-ups."
+        }
+      ]
+    },
+    {
+      "levelId": "level-16",
+      "title": "Payment Red Flags",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Which of these indicates a potentially unsafe payment process?",
+          "choices": [
+            { "id": "a", "text": "HTTPS-secured checkout" },
+            {
+              "id": "b",
+              "text": "Requesting payment via wire transfer to unknown accounts"
+            },
+            { "id": "c", "text": "Verified payment gateways like PayPal" },
+            { "id": "d", "text": "Official bank portals" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Requesting wire transfers to unknown accounts is a common scam payment method."
+        },
+        {
+          "id": "q2",
+          "text": "Which is safest for online payment?",
+          "choices": [
+            { "id": "a", "text": "Entering card info in pop-ups" },
+            { "id": "b", "text": "Responding to SMS payment requests" },
+            { "id": "c", "text": "Using official, verified payment gateways" },
+            { "id": "d", "text": "Using links from unsolicited emails" }
+          ],
+          "correctChoiceId": "c",
+          "explanation": "Trusted payment gateways protect your card data and add transaction security."
+        },
+        {
+          "id": "q3",
+          "text": "Red flags in payment forms include:",
+          "choices": [
+            { "id": "a", "text": "Credit card logos displayed" },
+            {
+              "id": "b",
+              "text": "Requests for unnecessary personal information (like PINs or social security numbers)"
+            },
+            { "id": "c", "text": "Secure HTTPS connection" },
+            { "id": "d", "text": "Clear privacy policy" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Legitimate forms won’t ask for sensitive details that are unnecessary for payment."
+        },
+        {
+          "id": "q4",
+          "text": "When a website offers extreme discounts but asks for upfront payment via unusual methods, you should:",
+          "choices": [
+            { "id": "a", "text": "Take the deal before it expires" },
+            {
+              "id": "b",
+              "text": "Verify the site and consider it a potential scam"
+            },
+            {
+              "id": "c",
+              "text": "Trust the deal if the site looks professional"
+            },
+            { "id": "d", "text": "Enter your details quickly" }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Unusual payment requests combined with extreme discounts are a major red flag."
+        },
+        {
+          "id": "q5",
+          "text": "To stay safe while paying online, you should:",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Always save your card details for convenience"
+            },
+            {
+              "id": "b",
+              "text": "Check URLs, use verified gateways, and avoid unsolicited payment requests"
+            },
+            { "id": "c", "text": "Click links in emails for secure payment" },
+            {
+              "id": "d",
+              "text": "Share your credentials with friends for validation"
+            }
+          ],
+          "correctChoiceId": "b",
+          "explanation": "Verifying URLs and using trusted gateways helps prevent payment fraud."
+        }
+      ]
+    }
+  ]
+}
