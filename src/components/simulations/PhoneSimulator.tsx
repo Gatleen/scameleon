@@ -56,6 +56,7 @@ export const PhoneSimulator = ({
 
   // Ringing logic
   useEffect(() => {
+    // Note: ASSETS.ringtone now comes from the fixed assets file
     const ringAudio = playAudio(ASSETS.ringtone);
     ringAudio.loop = true;
     const t = setTimeout(() => {
@@ -160,7 +161,7 @@ export const PhoneSimulator = ({
                 borderColor="white"
               >
                 <Image
-                  src={ASSETS.maybank_logo}
+                  src={ASSETS.maybank_logo} // Correctly uses the imported asset
                   alt="Maybank"
                   w="full"
                   h="full"
@@ -193,7 +194,7 @@ export const PhoneSimulator = ({
                   borderColor="white"
                 >
                   <Image
-                    src={ASSETS.maybank_logo}
+                    src={ASSETS.maybank_logo} // Correctly uses the imported asset
                     alt="Maybank"
                     w="full"
                     h="full"

@@ -21,8 +21,8 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import DailyQuizHeader from "../components/headerCards/DailyQuizHeader";
-import NavigationBarItems from "../components/NavigationBar"; // Added for consistency
-import Footer from "../components/Footer"; // Added for consistency
+import NavigationBarItems from "../components/NavigationBar";
+import Footer from "../components/Footer";
 import { db, auth } from "../firebase/firebaseConfig";
 import {
   collection,
@@ -36,8 +36,11 @@ import {
 import { awardScales } from "../utils/awardScales";
 import { SCALE_REWARDS } from "../constants/scalesRewards";
 
-const CORRECT_IMG = "src/assets/DailyQuizCorrect.png";
-const WRONG_IMG = "src/assets/DailyQuizWrong.png";
+// --- FIXED IMAGE IMPORTS ---
+// Ensure these files exist in these exact folders inside src/assets/
+import correctImg from "../assets/DailyQuizCorrect.png";
+import wrongImg from "../assets/DailyQuizWrong.png";
+import quizHeaderChar from "../assets/PageCharacters/ScameleonQuizDaily.png";
 
 interface Question {
   question: string;
@@ -71,7 +74,6 @@ const DailyQuiz = () => {
 
   const currentUser = auth.currentUser;
 
-  //
   useEffect(() => {
     const fetchDailyQuestion = async () => {
       try {
@@ -172,7 +174,6 @@ const DailyQuiz = () => {
       direction="column"
       minH="100vh"
       bg={backgroundColor}
-      // FIX: Prevent horizontal scroll
       overflowX="hidden"
     >
       {/* 1. Navigation */}
@@ -181,18 +182,12 @@ const DailyQuiz = () => {
       </Box>
 
       {/* 2. Main Content Container */}
-      <Container
-        maxW="container.lg"
-        flex="1"
-        py={8}
-        // FIX: Responsive Padding
-        px={{ base: 4, md: 8 }}
-      >
+      <Container maxW="container.lg" flex="1" py={8} px={{ base: 4, md: 8 }}>
         <VStack spacing={8} align="center" w="full">
-          {/* Header */}
+          {/* Header - FIXED IMAGE */}
           <DailyQuizHeader
             title="Daily Quiz"
-            imageSrc="src/assets/PageCharacters/ScameleonQuizDaily.png"
+            imageSrc={quizHeaderChar} // Uses imported variable
           />
 
           {/* Quiz Card */}
@@ -329,8 +324,9 @@ const DailyQuiz = () => {
             </Text>
           </ModalHeader>
           <ModalBody p={0} display="flex" justifyContent="center" bg="gray.50">
+            {/* FIXED IMAGE SRC - Using Imports */}
             <Image
-              src={showFeedback.isCorrect ? CORRECT_IMG : WRONG_IMG}
+              src={showFeedback.isCorrect ? correctImg : wrongImg}
               alt="Feedback"
               objectFit="contain"
               w="100%"

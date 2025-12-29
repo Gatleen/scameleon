@@ -15,6 +15,7 @@ import { ASSETS } from "../../data/simulations/assets";
 import { ROMANCE_SCRIPT } from "../../data/simulations/romanceScript";
 import { playAudio } from "../../utils/audioUtils";
 import LongPressButton from "../LongPressButton";
+import dennyProfileImg from "../../assets/Denny.png";
 
 export const ChatSimulator = ({ onComplete }: { onComplete: () => void }) => {
   const [messages, setMessages] = useState<any[]>([
@@ -168,8 +169,9 @@ export const ChatSimulator = ({ onComplete }: { onComplete: () => void }) => {
           borderWidth="2px"
           borderColor="white"
         >
+          {/* FIXED: Replaced ASSETS.romance_img with imported dennyProfileImg */}
           <Image
-            src={ASSETS.romance_img}
+            src={dennyProfileImg}
             alt="Denny"
             w="full"
             h="full"
@@ -287,6 +289,9 @@ export const ChatSimulator = ({ onComplete }: { onComplete: () => void }) => {
                       gap={2}
                       overflow="hidden"
                     >
+                      {/* Note: If m.content comes from your script data, 
+                          ensure those images are in the public folder 
+                          and referenced as "/images/..." strings. */}
                       <Image
                         src={m.content}
                         alt="Attachment"

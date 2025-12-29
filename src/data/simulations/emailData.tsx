@@ -10,6 +10,20 @@ import {
 } from "lucide-react";
 import type { EmailItem } from "../../types/simulationTypes";
 
+// --- FIXED IMAGE IMPORTS ---
+// Ensure these filenames match your "src/assets/Logos/" folder exactly
+import netflixLogo from "../../assets/Logos/NetflixLogo.png";
+import coworkerLogo from "../../assets/Logos/CoworkerLogo.png";
+import payPalLogo from "../../assets/Logos/PayPalLogo.png";
+import momLogo from "../../assets/Logos/MomLogo.png";
+import prizeLogo from "../../assets/Logos/PrizeLogo.jpg";
+import tnbLogo from "../../assets/Logos/TNBLogo.png";
+import bossLogo from "../../assets/Logos/BossLogo.png";
+import cwLogo from "../../assets/Logos/ComputerWeeklyLogo.png";
+import chipImg from "../../assets/Chip.png"; // Note: This one was "src/assets/Chip.png"
+import appleLogo from "../../assets/Logos/AppleLogo.png";
+import lhdnLogo from "../../assets/Logos/LHDNLogo.png";
+
 export const INBOX_EMAILS: EmailItem[] = [
   {
     id: 1,
@@ -17,7 +31,7 @@ export const INBOX_EMAILS: EmailItem[] = [
     senderEmail: "support@netflix-verify-action.com",
     subject: "Account Suspended: Payment Failed",
     preview: "We were unable to process your payment...",
-    profileImage: "src/assets/Logos/NetflixLogo.png",
+    profileImage: netflixLogo, // FIXED
     type: "brand",
     brandColor: "black",
     brandIcon: Play,
@@ -64,7 +78,7 @@ export const INBOX_EMAILS: EmailItem[] = [
     senderEmail: "t.david@company-internal.com",
     subject: "Intern Interview Notes",
     preview: "Please find attached the notes from today...",
-    profileImage: "src/assets/Logos/CoworkerLogo.png",
+    profileImage: coworkerLogo, // FIXED
     type: "plain",
     isScam: false,
     explanation:
@@ -112,7 +126,7 @@ export const INBOX_EMAILS: EmailItem[] = [
     senderEmail: "service@paypa1-security.com",
     subject: "You sent $500.00 USD to Unknown",
     preview: "Receipt for your recent transaction...",
-    profileImage: "src/assets/Logos/PayPalLogo.png",
+    profileImage: payPalLogo, // FIXED
     type: "brand",
     brandColor: "blue.800",
     brandIcon: CreditCard,
@@ -160,7 +174,7 @@ export const INBOX_EMAILS: EmailItem[] = [
     senderEmail: "gatleens_mom@gmail.com",
     subject: "Dinner on Sunday?",
     preview: "Are you coming over this weekend...",
-    profileImage: "src/assets/Logos/MomLogo.png",
+    profileImage: momLogo, // FIXED
     type: "plain",
     isScam: false,
     explanation:
@@ -189,7 +203,7 @@ export const INBOX_EMAILS: EmailItem[] = [
     senderEmail: "claims@lottery-surprise-winners.org",
     subject: "OFFICIAL NOTIFICATION: YOU WON!",
     preview: "Your email was selected randomly...",
-    profileImage: "src/assets/Logos/PrizeLogo.jpg",
+    profileImage: prizeLogo, // FIXED
     type: "brand",
     brandColor: "yellow.500",
     brandIcon: Flag,
@@ -239,7 +253,7 @@ export const INBOX_EMAILS: EmailItem[] = [
     senderEmail: "billing@tnb.com.my",
     subject: "Your Electric Bill is Ready",
     preview: "Bill for September 2025...",
-    profileImage: "src/assets/Logos/TNBLogo.png",
+    profileImage: tnbLogo, // FIXED
     type: "official",
     brandColor: "green.600",
     brandIcon: Zap,
@@ -283,7 +297,7 @@ export const INBOX_EMAILS: EmailItem[] = [
     senderEmail: "ceo-urgent-task@gmail.com",
     subject: "URGENT WIRE TRANSFER REQUEST",
     preview: "I need you to process this immediately...",
-    profileImage: "src/assets/Logos/BossLogo.png",
+    profileImage: bossLogo, // FIXED
     type: "plain",
     isScam: true,
     explanation:
@@ -309,7 +323,7 @@ export const INBOX_EMAILS: EmailItem[] = [
     senderEmail: "newsletter@cw-brand.com",
     subject: "Weekly Tech Roundup",
     preview: "Here are the top stories in tech...",
-    profileImage: "src/assets/Logos/ComputerWeeklyLogo.png",
+    profileImage: cwLogo, // FIXED
     type: "brand",
     brandColor: "indigo.600",
     isScam: false,
@@ -323,7 +337,8 @@ export const INBOX_EMAILS: EmailItem[] = [
         </Text>
         <Flex align="start" gap={4}>
           <Box bg="gray.200" w={24} h={22} flexShrink={0}>
-            <Image src="src/assets/Chip.png" />
+            {/* FIXED: Using imported image for the chip content */}
+            <Image src={chipImg} />
           </Box>
           <Box>
             <Text fontSize="md" fontWeight="bold">
@@ -355,7 +370,7 @@ export const INBOX_EMAILS: EmailItem[] = [
     senderEmail: "secure-id@apple-support-lock.net",
     subject: "Your Apple ID has been locked",
     preview: "We have detected unusual activity...",
-    profileImage: "src/assets/Logos/AppleLogo.png",
+    profileImage: appleLogo, // FIXED
     type: "brand",
     brandColor: "gray.200",
     isScam: true,
@@ -385,7 +400,7 @@ export const INBOX_EMAILS: EmailItem[] = [
     senderEmail: "refund-status@lhdn-tax-gov.xyz",
     subject: "Tax Refund Pending Approval",
     preview: "Click to claim your funds...",
-    profileImage: "src/assets/Logos/LHDNLogo.png",
+    profileImage: lhdnLogo, // FIXED
     type: "official",
     brandColor: "blue.900",
     isScam: true,

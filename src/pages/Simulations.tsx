@@ -31,6 +31,10 @@ import { AdwareSimulator } from "../components/simulations/AdwareSimulator";
 import { ShoppingSimulator } from "../components/simulations/ShoppingSimulator";
 import { PhoneSimulator } from "../components/simulations/PhoneSimulator";
 
+// --- FIXED IMAGE IMPORT ---
+// Ensure this path matches your folder structure exactly
+import simulationCharImg from "../assets/PageCharacters/ScameleonSimulation.png";
+
 export default function Simulations() {
   const [scenario, setScenario] = useState<ScenarioType>("HOME");
 
@@ -101,9 +105,10 @@ export default function Simulations() {
             >
               {/* Header Component */}
               <Box mb={10}>
+                {/* FIXED: Using imported variable instead of string path */}
                 <SimulationsHeader
                   title="Simulations"
-                  imageSrc="src/assets/PageCharacters/ScameleonSimulation.png"
+                  imageSrc={simulationCharImg}
                 />
               </Box>
 

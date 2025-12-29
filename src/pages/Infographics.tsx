@@ -21,6 +21,11 @@ import Footer from "../components/Footer";
 import InfographicsHeader from "../components/headerCards/InfographicsHeader";
 import INFOGRAPHICS from "../data/infographics.json";
 
+// --- IMAGE IMPORTS (FIXED) ---
+// Ensure these paths match your folder structure exactly
+import headerCharImg from "../assets/PageCharacters/ScameleonInfographic.png";
+import artistCharImg from "../assets/PageCharacters/ScameleonArtist.png";
+
 // --- MAIN INFOGRAPHICS IMPLEMENTATION ---
 
 interface Infographic {
@@ -37,7 +42,6 @@ const Infographics: React.FC = () => {
 
   const openModal = (info: Infographic) => {
     setSelectedInfographic(info);
-    // Prevent background scrolling when modal is open
     document.body.style.overflow = "hidden";
   };
 
@@ -51,6 +55,7 @@ const Infographics: React.FC = () => {
     if (!selectedInfographic) return;
 
     try {
+      // Note: This fetch only works if the image is hosted on the same domain (which works with the 'public' folder method)
       const response = await fetch(selectedInfographic.image);
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
@@ -76,18 +81,21 @@ const Infographics: React.FC = () => {
     e.stopPropagation();
     if (!selectedInfographic) return;
 
+    // Fix: Use full URL for sharing, not relative path
+    const shareUrl = window.location.origin + selectedInfographic.image;
+
     if (navigator.share) {
       try {
         await navigator.share({
           title: selectedInfographic.title,
           text: selectedInfographic.description,
-          url: selectedInfographic.image,
+          url: shareUrl,
         });
       } catch (err) {
         console.log("Error sharing:", err);
       }
     } else {
-      await navigator.clipboard.writeText(selectedInfographic.image);
+      await navigator.clipboard.writeText(shareUrl);
       toast({
         title: "Link Copied",
         description: "Image link copied to clipboard!",
@@ -109,20 +117,18 @@ const Infographics: React.FC = () => {
       minH="100vh"
       bgColor="#f9f1e8"
       fontFamily="body"
-      overflowX="hidden" // Prevent accidental horizontal scroll
+      overflowX="hidden"
     >
-      {/* Navigation Wrapper */}
       <Box mt={{ base: 2, md: 4 }}>
         <NavBar />
       </Box>
 
-      {/* Main Content */}
       <Box as="main" flex="1" pt={3} pb={10}>
         <Container maxW="7xl" px={{ base: 4, sm: 6, lg: 8 }}>
           <Box mb={{ base: 6, md: 12 }}>
             <InfographicsHeader
               title="Infographics"
-              imageSrc="src/assets/PageCharacters/ScameleonInfographic.png"
+              imageSrc={headerCharImg} // FIXED: Using imported variable
             />
           </Box>
 
@@ -145,15 +151,14 @@ const Infographics: React.FC = () => {
                 borderColor="gray.100"
                 onClick={() => openModal(info)}
               >
-                {/* Image Container */}
                 <Box
                   position="relative"
                   overflow="hidden"
                   bg="gray.100"
-                  _before={{ content: '""', display: "block", pb: "75%" }} // 4:3 Aspect Ratio
+                  _before={{ content: '""', display: "block", pb: "75%" }}
                 >
                   <Image
-                    src={info.image}
+                    src={info.image} // Ensure these paths in JSON start with "/" and exist in public folder
                     alt={info.title}
                     position="absolute"
                     top="0"
@@ -164,7 +169,7 @@ const Infographics: React.FC = () => {
                     _groupHover={{ transform: "scale(1.05)" }}
                     transition="transform 0.5s"
                   />
-                  {/* Hover Overlay */}
+                  {/* ... Rest of Overlay Code ... */}
                   <Flex
                     position="absolute"
                     inset="0"
@@ -198,7 +203,6 @@ const Infographics: React.FC = () => {
                   </Flex>
                 </Box>
 
-                {/* Content */}
                 <Box p={{ base: 4, md: 6 }}>
                   <Heading
                     as="h3"
@@ -238,7 +242,7 @@ const Infographics: React.FC = () => {
             >
               <Box h={{ base: "24", md: "32" }} w="auto" flexShrink={0}>
                 <Image
-                  src="src/assets/PageCharacters/ScameleonArtist.png"
+                  src={artistCharImg} // FIXED: Using imported variable
                   alt="Competition Mascot"
                   h="full"
                   w="auto"
@@ -273,7 +277,7 @@ const Infographics: React.FC = () => {
               }}
               transition="all 0.2s"
               onClick={handleJoinCompetition}
-              width={{ base: "full", md: "auto" }} // Full width button on mobile
+              width={{ base: "full", md: "auto" }}
             >
               Join Competition
             </Button>
@@ -309,7 +313,7 @@ const Infographics: React.FC = () => {
             align="center"
             bgGradient="linear(to-b, blackAlpha.800, transparent)"
             zIndex="sticky"
-            pointerEvents="none" // Allows clicks to pass through to close except on buttons
+            pointerEvents="none"
           >
             <Text
               color="white"
@@ -323,8 +327,8 @@ const Infographics: React.FC = () => {
 
             <Flex
               align="center"
-              pointerEvents="auto" // Re-enable clicks for buttons
-              mx={{ base: "auto", sm: 0 }} // Center on mobile
+              pointerEvents="auto"
+              mx={{ base: "auto", sm: 0 }}
               bg="gray.800"
               rounded="full"
               px="4"
@@ -374,7 +378,6 @@ const Infographics: React.FC = () => {
             />
           </Flex>
 
-          {/* Image Container in Modal */}
           <Box
             w="full"
             h="full"
@@ -382,7 +385,7 @@ const Infographics: React.FC = () => {
             alignItems="center"
             justifyContent="center"
             p={{ base: 2, md: 8 }}
-            onClick={(e) => e.stopPropagation()} // Clicking image doesn't close modal
+            onClick={(e) => e.stopPropagation()}
           >
             <Image
               src={selectedInfographic.image}
