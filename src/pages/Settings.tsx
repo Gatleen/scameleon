@@ -94,9 +94,14 @@ const Settings = () => {
   };
 
   // --- HANDLER: LOGOUT ---
+  // --- HANDLER: LOGOUT ---
   const handleLogout = async () => {
     setLogoutLoading(true);
     try {
+      // 1. CLEAR LOCAL STORAGE (Add this line!)
+      // This wipes the "ghost data" so the next login is fresh.
+      localStorage.clear(); // 2. Sign out of Firebase
+
       await signOut(auth);
 
       toast({
@@ -104,9 +109,8 @@ const Settings = () => {
         status: "success",
         duration: 2000,
         position: "top",
-      });
+      }); // Redirect to Start Page
 
-      // Redirect to Start Page
       navigate("/");
     } catch (error) {
       console.error("Error signing out: ", error);
