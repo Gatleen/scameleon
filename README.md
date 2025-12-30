@@ -1,6 +1,6 @@
 # Scameleon
 
-Scameleon is an anti-scam awareness web application designed to educate middle-aged adults about online scams, improve digital literacy, and promote safe online behavior through interactive learning.
+Scameleon is an scam awareness web application designed to educate middle-aged adults about online scams, improve digital literacy, and promote safe online behavior through interactive learning.
 
 The platform helps users recognize scam patterns, test their awareness, and understand what actions to take if they encounter or fall victim to scams.
 
