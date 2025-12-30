@@ -104,27 +104,27 @@ export const ASSET_PATHS = {
     1: {
       title: "Welcome to the Email Forest!",
       url: world1Vid,
-      desc: "Watch out for typos and fake sender names! The Email Forest is dense with deceit.",
+      desc: "Watch out for Phishy the Fish! The Email Forest is dense with deceit.",
     },
     2: {
       title: "Surviving the SMS Desert Dune",
       url: world2Vid,
-      desc: "Urgency is the SMS scammer's main weapon. Don't click that link in the hot sands!",
+      desc: "Urgency is the Dusty the Dune Worm's main weapon. Don't click that link in the hot sands!",
     },
     3: {
       title: "Will you answer the Call of the Ocean?",
       url: world3Vid,
-      desc: "Scam callers use fear and authority to pressure you. Hang up if they ask for sensitive info.",
+      desc: "Claws the Crab uses fear and authority to pressure you. Hang up if he asks for sensitive info.",
     },
     4: {
       title: "Don't Fall for the Web Trap Jungle!",
       url: world4Vid,
-      desc: "Fake websites and pop-ups are everywhere. Verify the URL bar before logging in!",
+      desc: "Fake websites and pop-ups are everywhere. Be careful of Web Widow the Spider!",
     },
     5: {
       title: "Get Entangled in Social Scam City",
       url: world5Vid,
-      desc: "The city never sleeps, and neither do the romance and job scammers. Be skeptical of strangers.",
+      desc: "The city never sleeps, and neither does Svana the Swan. Be skeptical of strangers.",
     },
   },
 };
