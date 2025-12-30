@@ -38,25 +38,20 @@ import {
   X,
 } from "lucide-react";
 
-// --- New Imports for PDF ---
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
-// --- Firebase Imports ---
 import { auth } from "../firebase/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { saveDiaryEntry, loadDiaryEntries } from "../firebase/diary";
 
-// --- Local Component & Data Imports ---
 import NavigationBarItems from "../components/NavigationBar";
 import DiaryHeader from "../components/headerCards/DiaryHeader";
 import Footer from "../components/Footer";
 import { STICKER_PACKS } from "../data/stickerData";
 
-// --- Asset Import ---
 import diaryMascot from "../assets/PageCharacters/ScameleonDiary.png";
 
-// --- Interfaces ---
 interface DraggableItem {
   id: string;
   type: "sticker" | "image";
@@ -78,7 +73,6 @@ interface DiaryEntry {
 }
 
 export default function Diary() {
-  // --- State ---
   const [entries, setEntries] = useState<DiaryEntry[]>([
     {
       id: "1",
@@ -92,11 +86,14 @@ export default function Diary() {
   const [selectedPack, setSelectedPack] =
     useState<keyof typeof STICKER_PACKS>("scameleon");
   const [draggingItem, setDraggingItem] = useState<string | null>(null);
+
+  // --- NEW STATE: Track which sticker is currently selected (tapped) ---
+  const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
+
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const [editingTitle, setEditingTitle] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // --- Refs & Hooks ---
   const pageRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const cancelRef = useRef<any>(null);
@@ -110,13 +107,11 @@ export default function Diary() {
 
   const currentEntry = entries[currentPage];
 
-  // --- Firebase Loading Logic ---
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         try {
           const savedEntries = await loadDiaryEntries(user.uid);
-
           if (savedEntries && savedEntries.length > 0) {
             const formattedEntries = savedEntries.map((entry: any) => ({
               ...entry,
@@ -124,7 +119,6 @@ export default function Diary() {
                 ? entry.date.toDate()
                 : new Date(entry.date),
             }));
-
             setEntries(formattedEntries);
             setCurrentPage(formattedEntries.length - 1);
           }
@@ -139,11 +133,9 @@ export default function Diary() {
       }
       setIsLoading(false);
     });
-
     return () => unsubscribe();
   }, [toast]);
 
-  // --- Logic Helpers ---
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const updated = [...entries];
     updated[currentPage].content = e.target.value;
@@ -166,7 +158,7 @@ export default function Diary() {
       id: Date.now().toString() + Math.random(),
       type,
       content,
-      x: 100, // Default position
+      x: 100,
       y: 100,
       rotation: 0,
       scale: 1,
@@ -176,12 +168,14 @@ export default function Diary() {
     const updated = [...entries];
     updated[currentPage].items.push(newItem);
     setEntries(updated);
+
+    // Auto-select the new item so the X is visible immediately
+    setSelectedItemId(newItem.id);
   };
 
-  // --- Mouse & Touch Handlers (Merged Logic) ---
+  // --- Mouse & Touch Handlers ---
   const startDrag = (clientX: number, clientY: number, itemId: string) => {
     const item = currentEntry.items.find((s) => s.id === itemId);
-    // FIX: Ensure pageRef.current exists
     if (item && pageRef.current) {
       const rect = pageRef.current.getBoundingClientRect();
       setDraggingItem(itemId);
@@ -193,7 +187,6 @@ export default function Diary() {
   };
 
   const moveDrag = (clientX: number, clientY: number) => {
-    // FIX: Ensure pageRef.current exists
     if (draggingItem && pageRef.current) {
       const rect = pageRef.current.getBoundingClientRect();
       const x = Math.max(
@@ -220,10 +213,11 @@ export default function Diary() {
     }
   };
 
-  // Mouse Handlers
   const handleItemMouseDown = (e: React.MouseEvent, itemId: string) => {
     e.preventDefault();
     e.stopPropagation();
+    // FIX: Select the item on click/drag start
+    setSelectedItemId(itemId);
     startDrag(e.clientX, e.clientY, itemId);
   };
 
@@ -235,9 +229,10 @@ export default function Diary() {
     setDraggingItem(null);
   };
 
-  // Touch Handlers (For Mobile)
   const handleItemTouchStart = (e: React.TouchEvent, itemId: string) => {
     e.stopPropagation();
+    // FIX: Select the item on touch start
+    setSelectedItemId(itemId);
     const touch = e.touches[0];
     startDrag(touch.clientX, touch.clientY, itemId);
   };
@@ -253,12 +248,18 @@ export default function Diary() {
     setDraggingItem(null);
   };
 
+  // FIX: Clear selection when tapping the background
+  const handleBackgroundClick = () => {
+    setSelectedItemId(null);
+  };
+
   const removeItem = (itemId: string) => {
     const updated = [...entries];
     updated[currentPage].items = updated[currentPage].items.filter(
       (s) => s.id !== itemId
     );
     setEntries(updated);
+    setSelectedItemId(null); // Clear selection after delete
   };
 
   const rotateItem = (itemId: string) => {
@@ -359,46 +360,45 @@ export default function Diary() {
   };
 
   const exportAsPDF = async () => {
-    const element = document.getElementById("diary-page-content");
-    if (!element) {
-      toast({
-        title: "Error",
-        description: "Content not found.",
-        status: "error",
+    // Deselect items so X buttons don't appear in PDF
+    setSelectedItemId(null);
+
+    // Small delay to ensure render updates before capture
+    setTimeout(async () => {
+      const element = document.getElementById("diary-page-content");
+      if (!element) return;
+      const loadingToast = toast({
+        title: "Generating PDF...",
+        status: "loading",
+        duration: null,
       });
-      return;
-    }
-    const loadingToast = toast({
-      title: "Generating PDF...",
-      status: "loading",
-      duration: null,
-    });
-    try {
-      const canvas = await html2canvas(element, {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: "#ffffff",
-      });
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4");
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const imgProps = pdf.getImageProperties(imgData);
-      const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, imgHeight);
-      pdf.save(
-        `Scameleon_Diary_${currentEntry.date.toISOString().split("T")[0]}.pdf`
-      );
-      toast.close(loadingToast);
-      toast({
-        title: "PDF Downloaded",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-      });
-    } catch (error) {
-      toast.close(loadingToast);
-      toast({ title: "Export Failed", status: "error" });
-    }
+      try {
+        const canvas = await html2canvas(element, {
+          scale: 2,
+          useCORS: true,
+          backgroundColor: "#ffffff",
+        });
+        const imgData = canvas.toDataURL("image/png");
+        const pdf = new jsPDF("p", "mm", "a4");
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const imgProps = pdf.getImageProperties(imgData);
+        const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, imgHeight);
+        pdf.save(
+          `Scameleon_Diary_${currentEntry.date.toISOString().split("T")[0]}.pdf`
+        );
+        toast.close(loadingToast);
+        toast({
+          title: "PDF Downloaded",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+      } catch (error) {
+        toast.close(loadingToast);
+        toast({ title: "Export Failed", status: "error" });
+      }
+    }, 100);
   };
 
   const createNewEntry = () => {
@@ -425,24 +425,18 @@ export default function Diary() {
       fontFamily="sans-serif"
       overflowX="hidden"
     >
-      {/* 1. Navigation */}
       <Box mt={{ base: 2, md: 4 }}>
         <NavigationBarItems />
       </Box>
 
-      {/* 2. Main Content */}
       <Box flex="1" pb={8} px={{ base: 4, md: 8 }}>
         <Container maxW="7xl" p={0}>
-          {/* Header */}
           <Box mb={6}>
             <DiaryHeader title="Diary" imageSrc={diaryMascot} />
           </Box>
 
-          {/* Main Layout: Stack on Mobile, Row on Desktop */}
           <Flex gap={6} flexDirection={{ base: "column", lg: "row" }}>
-            {/* --- Notebook Page Area --- */}
             <Box flex="1" position="relative" ml={{ base: 0, lg: 8 }}>
-              {/* Book Binding Decoration (Desktop Only) */}
               <Box
                 display={{ base: "none", lg: "block" }}
                 position="absolute"
@@ -456,22 +450,21 @@ export default function Diary() {
               />
 
               <Box
-                // FIX: Added ref={pageRef} here! This is crucial for dragging.
                 ref={pageRef}
                 id="diary-page-content"
                 bg="white"
                 roundedRight="2xl"
                 roundedLeft={{ base: "2xl", lg: "none" }}
                 shadow="2xl"
-                p={{ base: 4, md: 8 }} // Responsive Padding
+                p={{ base: 4, md: 8 }}
                 position="relative"
                 overflow="hidden"
-                minH={{ base: "500px", md: "700px" }} // Smaller height on mobile
-                // Mouse Handlers
+                minH={{ base: "500px", md: "700px" }}
+                // FIX: Add onClick to clear selection when background is clicked
+                onClick={handleBackgroundClick}
                 onMouseMove={handleMouseMove}
                 onMouseUp={handleMouseUp}
                 onMouseLeave={handleMouseUp}
-                // Touch Handlers
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
                 _before={{
@@ -486,7 +479,6 @@ export default function Diary() {
                   bgImage: `repeating-linear-gradient(0deg, transparent, transparent 35px, #000 35px, #000 36px)`,
                 }}
               >
-                {/* Entry Title & Date */}
                 <Box
                   mb={6}
                   pb={4}
@@ -535,7 +527,6 @@ export default function Diary() {
                   </Text>
                 </Box>
 
-                {/* Text Area */}
                 <Textarea
                   value={currentEntry.content}
                   onChange={handleContentChange}
@@ -554,66 +545,76 @@ export default function Diary() {
                   _focus={{ boxShadow: "none" }}
                 />
 
-                {/* Draggable Items */}
-                {currentEntry.items.map((item) => (
-                  <Box
-                    key={item.id}
-                    position="absolute"
-                    left={`${item.x}px`}
-                    top={`${item.y}px`}
-                    transform={`rotate(${item.rotation}deg) scale(${item.scale})`}
-                    cursor="move"
-                    userSelect="none"
-                    zIndex={20}
-                    // FIX: Using 'sx' prop for touchAction to satisfy TypeScript and enable mobile dragging
-                    sx={{ touchAction: "none" }}
-                    // Mouse Events
-                    onMouseDown={(e) => handleItemMouseDown(e, item.id)}
-                    onDoubleClick={() => rotateItem(item.id)}
-                    // Touch Events
-                    onTouchStart={(e) => handleItemTouchStart(e, item.id)}
-                    role="group"
-                  >
-                    <ChakraImage
-                      src={item.content}
-                      alt={item.type}
-                      w={`${item.width}px`}
-                      h={item.type === "sticker" ? "auto" : `${item.height}px`}
-                      rounded={item.type === "image" ? "lg" : "none"}
-                      shadow={item.type === "image" ? "lg" : "none"}
-                      filter={
-                        item.type === "sticker"
-                          ? "drop-shadow(0px 4px 6px rgba(0,0,0,0.2))"
-                          : "none"
-                      }
-                      pointerEvents="none"
-                      draggable={false}
-                    />
-                    {/* Delete X Button */}
-                    <IconButton
-                      aria-label="Remove item"
-                      icon={<X size={12} />}
-                      size="xs"
-                      colorScheme="red"
-                      rounded="full"
+                {currentEntry.items.map((item) => {
+                  // FIX: Determine if THIS specific item is selected
+                  const isSelected = selectedItemId === item.id;
+
+                  return (
+                    <Box
+                      key={item.id}
                       position="absolute"
-                      top="-2"
-                      right="-2"
-                      // Always show on touch devices, otherwise show on hover
-                      opacity={{ base: 1, md: 0 }}
-                      _groupHover={{ opacity: 1 }}
-                      transition="opacity 0.2s"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        removeItem(item.id);
-                      }}
-                      zIndex={30}
-                    />
-                  </Box>
-                ))}
+                      left={`${item.x}px`}
+                      top={`${item.y}px`}
+                      transform={`rotate(${item.rotation}deg) scale(${item.scale})`}
+                      cursor="move"
+                      userSelect="none"
+                      zIndex={20}
+                      sx={{ touchAction: "none" }}
+                      onMouseDown={(e) => handleItemMouseDown(e, item.id)}
+                      onDoubleClick={() => rotateItem(item.id)}
+                      onTouchStart={(e) => handleItemTouchStart(e, item.id)}
+                      role="group"
+                    >
+                      <ChakraImage
+                        src={item.content}
+                        alt={item.type}
+                        w={`${item.width}px`}
+                        h={
+                          item.type === "sticker" ? "auto" : `${item.height}px`
+                        }
+                        rounded={item.type === "image" ? "lg" : "none"}
+                        shadow={item.type === "image" ? "lg" : "none"}
+                        filter={
+                          item.type === "sticker"
+                            ? "drop-shadow(0px 4px 6px rgba(0,0,0,0.2))"
+                            : "none"
+                        }
+                        pointerEvents="none"
+                        draggable={false}
+                        // Add border if selected so user knows it's active
+                        border={isSelected ? "2px dashed #F6AD55" : "none"}
+                      />
+
+                      {/* Delete X Button - Controlled by Selection State */}
+                      <IconButton
+                        aria-label="Remove item"
+                        icon={<X size={12} />}
+                        size="xs"
+                        colorScheme="red"
+                        rounded="full"
+                        position="absolute"
+                        top="-3"
+                        right="-3"
+                        // FIX: Logic for visibility
+                        // On Mobile: Show ONLY if selected
+                        // On Desktop: Show if selected OR hovered
+                        opacity={{
+                          base: isSelected ? 1 : 0,
+                          md: isSelected ? 1 : 0,
+                        }}
+                        _groupHover={{ opacity: 1 }} // Desktop Hover Override
+                        transition="opacity 0.2s"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          removeItem(item.id);
+                        }}
+                        zIndex={30}
+                      />
+                    </Box>
+                  );
+                })}
               </Box>
 
-              {/* Page Controls Toolbar */}
               <Flex
                 data-html2canvas-ignore="true"
                 direction="column"
@@ -625,7 +626,6 @@ export default function Diary() {
                 position="relative"
                 zIndex={10}
               >
-                {/* Button Row */}
                 <Flex
                   justify="space-between"
                   align="center"
@@ -680,7 +680,6 @@ export default function Diary() {
                   </Button>
                 </Flex>
 
-                {/* Pagination */}
                 <Flex
                   justify="center"
                   align="center"
@@ -734,14 +733,13 @@ export default function Diary() {
               </Flex>
             </Box>
 
-            {/* --- Sticker Sidebar --- */}
             <Box
               w={{ base: "100%", lg: "80" }}
               bg="white"
               rounded="2xl"
               shadow="xl"
               p={6}
-              minH={{ base: "auto", lg: "700px" }} // Auto height on mobile so it doesn't take up empty space
+              minH={{ base: "auto", lg: "700px" }}
               display="flex"
               flexDirection="column"
             >
@@ -761,7 +759,6 @@ export default function Diary() {
                 </Heading>
               </HStack>
 
-              {/* Pack Selector */}
               <Flex wrap="wrap" gap={2} mb={4}>
                 {Object.keys(STICKER_PACKS).map((pack) => (
                   <Badge
@@ -782,7 +779,6 @@ export default function Diary() {
                 ))}
               </Flex>
 
-              {/* Stickers Grid */}
               <SimpleGrid columns={{ base: 4, lg: 3 }} spacing={3}>
                 {STICKER_PACKS[selectedPack].map((src, idx) => (
                   <Tooltip label="Click to add" key={idx} placement="top">
@@ -810,7 +806,6 @@ export default function Diary() {
                 ))}
               </SimpleGrid>
 
-              {/* Tips Box */}
               <Box
                 mt={6}
                 p={4}
@@ -832,7 +827,6 @@ export default function Diary() {
             </Box>
           </Flex>
 
-          {/* Delete Alert */}
           <AlertDialog
             isOpen={isDeleteOpen}
             leastDestructiveRef={cancelRef}
@@ -859,7 +853,6 @@ export default function Diary() {
         </Container>
       </Box>
 
-      {/* 3. Footer */}
       <Box width="100%" mt="auto">
         <Footer />
       </Box>
