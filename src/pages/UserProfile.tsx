@@ -50,6 +50,9 @@ import profilePlaceholder from "../assets/ProfilePlaceholder.png";
 import coverPlaceholder from "../assets/CoverPlaceholder.png";
 import profileHeaderChar from "../assets/PageCharacters/ScameleonProfile.png";
 
+// --- NEW FIX: Import the Scales Icon ---
+import scalesIcon from "../assets/ScalesIcon.png";
+
 // Preset Covers
 import cover1 from "../assets/ProfileCovers/Cover1.png";
 import cover2 from "../assets/ProfileCovers/Cover2.png";
@@ -151,8 +154,8 @@ export default function UserProfile({
     fullname: "Loading...",
     email: "...",
     username: "scameleon_user",
-    avatarUrl: profilePlaceholder, // Use imported variable
-    coverUrl: coverPlaceholder, // Use imported variable
+    avatarUrl: profilePlaceholder,
+    coverUrl: coverPlaceholder,
     bio: "Adapting to every environment.",
   });
 
@@ -346,7 +349,6 @@ export default function UserProfile({
 
       <Box flex="1">
         <Container maxW="container.xl" pt={2} pb={4}>
-          {/* Using imported image variable */}
           <UserProfileHeader title={"Profile"} imageSrc={profileHeaderChar} />
         </Container>
 
@@ -562,7 +564,11 @@ export default function UserProfile({
           {/* --- SCALES CARD (Balance) --- */}
           {currentAuthUser && (
             <Flex justify="center" mb={6}>
-              <ScalesCard userId={currentAuthUser.uid} />
+              {/* FIXED: Passing the imported icon explicitly */}
+              <ScalesCard
+                userId={currentAuthUser.uid}
+                scalesImage={scalesIcon}
+              />
             </Flex>
           )}
 
