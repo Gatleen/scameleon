@@ -657,7 +657,7 @@ export default function UserProfile({
                           <Text
                             fontWeight="bold"
                             color={isUnlocked ? "gray.800" : "gray.500"}
-                            noOfLines={1} // Prevent text breaking layout
+                            // FIX: Removed noOfLines={1} so full name shows
                           >
                             {badge.name}
                           </Text>

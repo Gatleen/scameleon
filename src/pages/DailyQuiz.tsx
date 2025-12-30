@@ -109,13 +109,12 @@ const DailyQuiz = () => {
     const isCorrect = selectedIndex === currentQuestion.correctIndex;
     const result = { answered: true, selectedIndex, isCorrect };
 
-    // --- FIX 2: UPDATE UI IMMEDIATELY (Optimistic Update) ---
-    // We update state first so the user sees the result instantly.
+    // Optimistic Update
     localStorage.setItem(dayKey, JSON.stringify(result));
     setQuizResult(result);
     setShowFeedback({ visible: true, isCorrect });
 
-    // --- Background Database Sync ---
+    // Background Database Sync
     try {
       const today = new Date().toISOString().split("T")[0];
       const userRef = doc(db, "users", currentUser.uid);
@@ -124,13 +123,11 @@ const DailyQuiz = () => {
       if (userSnap.exists()) {
         const data = userSnap.data();
 
-        // If the DB says we already played today, stop here (don't award points twice)
         if (data.lastDailyQuizDate === today) {
           console.log("Daily quiz already recorded for today.");
           return;
         }
 
-        // Award Scales
         await awardScales(
           currentUser.uid,
           isCorrect
@@ -139,14 +136,12 @@ const DailyQuiz = () => {
           "Daily quiz completed"
         );
 
-        // Update Date
         await updateDoc(userRef, {
           lastDailyQuizDate: today,
         });
       }
     } catch (error) {
       console.error("Error syncing quiz result:", error);
-      // We don't revert the UI because the user technically "played" locally
     }
   };
 
@@ -195,24 +190,25 @@ const DailyQuiz = () => {
             p={{ base: 6, md: 8 }}
             rounded="3xl"
             shadow="xl"
-            position="relative"
             borderWidth="1px"
             borderColor="orange.100"
           >
-            {quizResult && (
-              <Badge
-                colorScheme={quizResult.isCorrect ? "green" : "red"}
-                position="absolute"
-                top={4}
-                right={6}
-                rounded="full"
-                px={3}
-              >
-                {quizResult.isCorrect ? "Correct" : "Incorrect"}
-              </Badge>
-            )}
-
             <VStack spacing={6} align="stretch">
+              {/* FIX: Moved Badge inside the flow, removed absolute positioning */}
+              {quizResult && (
+                <Flex justify="center" mb={2}>
+                  <Badge
+                    colorScheme={quizResult.isCorrect ? "green" : "red"}
+                    rounded="full"
+                    px={3}
+                    py={1}
+                    fontSize="sm"
+                  >
+                    {quizResult.isCorrect ? "Correct Answer" : "Incorrect"}
+                  </Badge>
+                </Flex>
+              )}
+
               <Text
                 fontSize={{ base: "lg", md: "xl" }}
                 fontWeight="bold"
