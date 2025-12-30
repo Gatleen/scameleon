@@ -60,6 +60,9 @@ import NavBar from "../components/NavigationBar";
 import Footer from "../components/Footer";
 import ForumHeader from "../components/headerCards/ForumHeader";
 
+// --- FIXED IMAGE IMPORT ---
+import forumHeaderChar from "../assets/PageCharacters/ScameleonForum.png";
+
 // ---------------- TYPES ----------------
 interface Comment {
   id: string;
@@ -438,16 +441,13 @@ export default function ForumPage() {
       <Box flex="1" py={8} px={{ base: 4, md: 8 }}>
         <Container maxW="container.xl" p={0}>
           <Box mb={{ base: 6, md: 10 }}>
-            <ForumHeader
-              title="Forum"
-              imageSrc="src/assets/PageCharacters/ScameleonForum.png"
-            />
+            {/* FIXED: Using imported image variable */}
+            <ForumHeader title="Forum" imageSrc={forumHeaderChar} />
           </Box>
 
           <Container maxW="container.md" px={0}>
             {/* COMPOSE AREA */}
             {currentUser && (
-              // Collapse controlled by button on mobile, always TRUE on desktop
               <Collapse in={showCompose || isDesktop} animateOpacity>
                 <Box mb={8}>
                   <Card
@@ -462,7 +462,7 @@ export default function ForumPage() {
                           src={currentUser.avatarUrl}
                           name={currentUser.displayName}
                           bg="orange.100"
-                          display={{ base: "none", sm: "block" }} // Hide avatar on small mobile to save space
+                          display={{ base: "none", sm: "block" }}
                         />
                         <Box flex={1}>
                           <Textarea
@@ -669,7 +669,7 @@ export default function ForumPage() {
                           >
                             <Image
                               src={post.imageUrl}
-                              maxH={{ base: "200px", md: "350px" }} // Responsive Image Height
+                              maxH={{ base: "200px", md: "350px" }}
                               w="auto"
                               maxW="100%"
                               objectFit="contain"

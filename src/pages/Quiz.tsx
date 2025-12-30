@@ -23,7 +23,7 @@ import {
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 
 // --- FIREBASE IMPORTS ---
-import { doc, getDoc, setDoc, arrayUnion } from "firebase/firestore"; // Added setDoc
+import { doc, getDoc, setDoc, arrayUnion } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../firebase/firebaseConfig";
 
@@ -52,6 +52,12 @@ import WorldIntroModal from "../modals/WorldIntroModal";
 import LevelIntroModal from "../modals/LevelIntroModal";
 import WorldCompleteModal from "../modals/WorldCompleteModal";
 import GameCompleteModal from "../modals/GameCompleteModal";
+
+// --- FIXED IMAGE IMPORTS ---
+// 1. The group image for the modal
+import scamVillainsGroup from "../assets/QuizWorlds/TheScamvillains.png";
+// 2. The header character
+import scamSmashChar from "../assets/PageCharacters/ScameleonScamSmash.png";
 
 // --- THEME ---
 const theme = extendTheme({
@@ -378,8 +384,9 @@ const QuizContent: React.FC<QuizContentProps> = ({
                 borderColor="orange.200"
                 w="full"
               >
+                {/* FIXED: Using imported image variable */}
                 <Image
-                  src="src/assets/QuizWorlds/TheScamvillains.png"
+                  src={scamVillainsGroup}
                   alt="The ScamVillains"
                   maxH="200px"
                   mx="auto"
@@ -414,10 +421,8 @@ const QuizContent: React.FC<QuizContentProps> = ({
           >
             Back to Dashboard
           </Button>
-          <ScamSmashHeader
-            title="Scam Smash"
-            imageSrc="src/assets/PageCharacters/ScameleonScamSmash.png"
-          />
+          {/* FIXED: Using imported image variable */}
+          <ScamSmashHeader title="Scam Smash" imageSrc={scamSmashChar} />
         </Flex>
       </Container>
 

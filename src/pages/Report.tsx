@@ -22,6 +22,7 @@ import {
   consumerProtection,
 } from "../data/reportLinks";
 
+// --- HEADER IMAGE IMPORT ---
 import reportImage from "../assets/PageCharacters/ScameleonReport.png";
 
 export default function Report() {
@@ -51,7 +52,10 @@ export default function Report() {
         >
           {/* Header */}
           <Box mb={{ base: 6, md: 8 }}>
-            <ReportHeader title="Report a Scam" imageSrc={reportImage} />
+            <ReportHeader
+              title="Report a Scam"
+              imageSrc={reportImage} // Using variable
+            />
           </Box>
 
           {/* Intro Section */}

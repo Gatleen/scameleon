@@ -45,12 +45,23 @@ import ScalesCard from "../components/ScalesCard";
 import { BADGES, PASS_SCORE } from "../data/GameConfig";
 import type { LevelScores } from "../types";
 
+// --- FIXED ASSET IMPORTS ---
+import profilePlaceholder from "../assets/ProfilePlaceholder.png";
+import coverPlaceholder from "../assets/CoverPlaceholder.png";
+import profileHeaderChar from "../assets/PageCharacters/ScameleonProfile.png";
+
+// Preset Covers
+import cover1 from "../assets/ProfileCovers/Cover1.png";
+import cover2 from "../assets/ProfileCovers/Cover2.png";
+import cover3 from "../assets/ProfileCovers/Cover3.png";
+import cover4 from "../assets/ProfileCovers/Cover4.png";
+import cover5 from "../assets/ProfileCovers/Cover5.png";
+import cover6 from "../assets/ProfileCovers/Cover6.png";
+
 // --- Types ---
 interface UserProfileData {
-  // Read-only (mostly)
   fullname: string;
   email: string;
-  // Editable in Firestore
   username: string;
   avatarUrl: string;
   coverUrl: string;
@@ -58,20 +69,12 @@ interface UserProfileData {
 }
 
 interface UserProfileProps {
-  // We keep these for flexibility, but usually we fetch internally
   badges?: string[];
   scores?: LevelScores;
 }
 
 // --- CONSTANTS ---
-const PRESET_COVERS = [
-  "src/assets/ProfileCovers/Cover1.png",
-  "src/assets/ProfileCovers/Cover2.png",
-  "src/assets/ProfileCovers/Cover3.png",
-  "src/assets/ProfileCovers/Cover4.png",
-  "src/assets/ProfileCovers/Cover5.png",
-  "src/assets/ProfileCovers/Cover6.png",
-];
+const PRESET_COVERS = [cover1, cover2, cover3, cover4, cover5, cover6];
 
 const getBadgeColor = (type: string) => {
   switch (type) {
@@ -148,8 +151,8 @@ export default function UserProfile({
     fullname: "Loading...",
     email: "...",
     username: "scameleon_user",
-    avatarUrl: "src/assets/ProfilePlaceholder.png",
-    coverUrl: "src/assets/CoverPlaceholder.png",
+    avatarUrl: profilePlaceholder, // Use imported variable
+    coverUrl: coverPlaceholder, // Use imported variable
     bio: "Adapting to every environment.",
   });
 
@@ -180,17 +183,14 @@ export default function UserProfile({
               fullname: fetchedName,
               email: user.email || "No Email",
               username: firestoreData.username || "scameleon_user",
-              avatarUrl:
-                firestoreData.avatarUrl || "src/assets/ProfilePlaceholder.png",
-              coverUrl:
-                firestoreData.coverUrl || "src/assets/CoverPlaceholder.png",
+              avatarUrl: firestoreData.avatarUrl || profilePlaceholder,
+              coverUrl: firestoreData.coverUrl || coverPlaceholder,
               bio: firestoreData.bio || "Adapting to every environment.",
             };
             setProfileData(mergedData);
             setEditForm(mergedData);
 
-            // 2. Setup Game Stats (The Fix!)
-            // We fetch 'badges' from root and 'levelScores' from gameProgress
+            // 2. Setup Game Stats
             const dbBadges = firestoreData.badges || [];
             const dbProgress = firestoreData.gameProgress || {};
             const dbScores = dbProgress.levelScores || {};
@@ -203,8 +203,8 @@ export default function UserProfile({
               fullname: user.displayName || "New User",
               email: user.email || "",
               username: "scameleon_user",
-              avatarUrl: "src/assets/ProfilePlaceholder.png",
-              coverUrl: "src/assets/CoverPlaceholder.png",
+              avatarUrl: profilePlaceholder,
+              coverUrl: coverPlaceholder,
               bio: "Adapting to every environment.",
             };
             setProfileData(defaultData);
@@ -346,10 +346,8 @@ export default function UserProfile({
 
       <Box flex="1">
         <Container maxW="container.xl" pt={2} pb={4}>
-          <UserProfileHeader
-            title={"Profile"}
-            imageSrc={"src/assets/PageCharacters/ScameleonProfile.png"}
-          />
+          {/* Using imported image variable */}
+          <UserProfileHeader title={"Profile"} imageSrc={profileHeaderChar} />
         </Container>
 
         <Container maxW="container.md" pb={12}>
@@ -376,7 +374,7 @@ export default function UserProfile({
                 w="full"
                 h="full"
                 objectFit="cover"
-                fallbackSrc="https://via.placeholder.com/800x200"
+                fallbackSrc={coverPlaceholder}
               />
               {isEditing && (
                 <Flex
@@ -586,7 +584,6 @@ export default function UserProfile({
 
             <VStack spacing={3} align="stretch">
               {BADGES.map((badge) => {
-                // UPDATE: Use fetchedBadges here!
                 const isUnlocked = fetchedBadges.includes(badge.id);
                 const colorScheme = getBadgeColor(badge.type);
 

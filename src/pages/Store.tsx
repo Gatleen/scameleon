@@ -39,8 +39,13 @@ import Footer from "../components/Footer";
 import StoreHeader from "../components/headerCards/StoreHeader";
 import ScalesCard from "../components/ScalesCard";
 
-const SCALES_ICON = "src/assets/ScalesIcon.png";
-const STORE_BANNER = "src/assets/PageCharacters/ScameleonStore.png";
+// --- FIXED ASSET IMPORTS ---
+// 1. Static Page Assets
+import scalesIcon from "../assets/ScalesIcon.png";
+import storeBanner from "../assets/PageCharacters/ScameleonStore.png";
+
+// 2. Merch Assets (The Map we created in Step 1)
+import { MERCH_IMAGES } from "../data/merchAssets";
 
 // --- SUB-COMPONENTS ---
 
@@ -67,7 +72,7 @@ const ProductCard = ({
       _hover={{ shadow: "xl", transform: "translateY(-4px)" }}
       transition="all 0.3s"
       role="group"
-      h="100%" // Ensure card fills grid height
+      h="100%"
     >
       <Box position="relative" h="48" w="full" bg="gray.100">
         <Image
@@ -138,7 +143,7 @@ const ProductCard = ({
               fontSize="lg"
             >
               <Image
-                src={SCALES_ICON}
+                src={scalesIcon} // Fixed Import
                 boxSize="20px"
                 mr={2}
                 alt="Coin"
@@ -176,22 +181,24 @@ const ProductCard = ({
 // --- MAIN COMPONENT ---
 
 export default function Store() {
-  // State for Firebase User
   const [currentUserId, setCurrentUserId] = useState<string>("");
   const [realBalance, setRealBalance] = useState<number>(0);
   const [userProfilePic, setUserProfilePic] = useState<string>("");
   const [userName, setUserName] = useState<string>("");
 
-  // NEW: State for Shipping Address
   const [shippingAddress, setShippingAddress] = useState<string>("");
   const [isEditingAddress, setIsEditingAddress] = useState(false);
 
-  const [products, setProducts] = useState(STORE_MERCH);
+  // --- FIX: Initialize products by mapping JSON to Real Imports ---
+  const [products, setProducts] = useState(() => {
+    return STORE_MERCH.map((item) => ({
+      ...item,
+      // Use the imported images from our map, fallback to empty array
+      images: MERCH_IMAGES[item.id] || [],
+    }));
+  });
 
-  // Brand Gradient Variable
   const backgroundColor = "#f9f1e8";
-
-  // Modal State
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -199,7 +206,6 @@ export default function Store() {
 
   const toast = useToast();
 
-  // 1. FETCH REAL USER DATA (Using onSnapshot for Real-Time Updates)
   useEffect(() => {
     const auth = getAuth();
     let unsubscribeFirestore: (() => void) | null = null;
@@ -217,7 +223,6 @@ export default function Store() {
             (docSnap) => {
               if (docSnap.exists()) {
                 const data = docSnap.data();
-
                 setRealBalance(data.scales || 0);
 
                 if (data.avatarUrl) {
@@ -226,7 +231,6 @@ export default function Store() {
                 if (data.displayName) {
                   setUserName(data.displayName);
                 }
-                // NEW: Load saved address
                 if (data.shippingAddress) {
                   setShippingAddress(data.shippingAddress);
                 }
@@ -240,7 +244,6 @@ export default function Store() {
           console.error("Error setting up firestore listener", e);
         }
       } else {
-        // Cleanup if logged out
         setCurrentUserId("");
         setRealBalance(0);
         setUserName("");
@@ -259,7 +262,6 @@ export default function Store() {
   const handleOpenRedeem = (product: any) => {
     setSelectedProduct(product);
     setActiveImageIndex(0);
-    // If no address is set, default to edit mode
     if (!shippingAddress) setIsEditingAddress(true);
     else setIsEditingAddress(false);
     onOpen();
@@ -273,7 +275,6 @@ export default function Store() {
   const executeRedemption = async () => {
     if (!selectedProduct || !currentUserId) return;
 
-    // NEW: Validation for address
     if (!shippingAddress.trim()) {
       toast({
         title: "Shipping Address Required",
@@ -323,17 +324,13 @@ export default function Store() {
       const userRef = doc(db, "users", currentUserId);
       const newBalance = realBalance - currentProduct.price;
 
-      // UPDATE FIREBASE
       await updateDoc(userRef, {
         scales: newBalance,
-        // NEW: Save the shipping address to the user profile
         shippingAddress: shippingAddress,
       });
 
-      // Update Local State (Redundant if onSnapshot is fast, but good for safety)
       setRealBalance(newBalance);
 
-      // Update Local Product Stock
       const updatedProducts = [...products];
       updatedProducts[currentProductIndex] = {
         ...currentProduct,
@@ -369,10 +366,8 @@ export default function Store() {
       direction="column"
       minH="100vh"
       bg={backgroundColor}
-      // FIX: Prevent horizontal scroll
       overflowX="hidden"
     >
-      {/* 1. Navigation Bar */}
       <Box mt={{ base: 2, md: 4 }}>
         <NavigationBarItems />
       </Box>
@@ -390,18 +385,12 @@ export default function Store() {
       >
         <Container maxW="7xl" h={16} px={{ base: 4, md: 8 }}>
           <Flex h="full" align="center" justify="space-between">
-            {/* Left: Brand */}
             <Flex align="center" gap={3}>
               <Flex bg="orange.500" p={2} borderRadius="md" color="white">
                 <Icon as={Package} boxSize={{ base: 5, md: 6 }} />
               </Flex>
               <Box>
-                <Heading
-                  size="sm"
-                  lineHeight="tight"
-                  color="gray.800"
-                  // Hide subtitle on mobile to save space
-                >
+                <Heading size="sm" lineHeight="tight" color="gray.800">
                   Scameleon Store
                 </Heading>
                 <Text
@@ -422,7 +411,6 @@ export default function Store() {
                   fontWeight="bold"
                   color="gray.500"
                   textTransform="uppercase"
-                  // Hide the label "Balance" on mobile, keep number
                   display={{ base: "none", sm: "block" }}
                 >
                   Balance
@@ -434,7 +422,7 @@ export default function Store() {
                   gap={1}
                 >
                   <Image
-                    src={SCALES_ICON}
+                    src={scalesIcon} // Fixed Import
                     boxSize={{ base: "24px", md: "28px" }}
                     alt="Coin"
                     fallbackSrc="https://via.placeholder.com/24?text=$"
@@ -463,7 +451,10 @@ export default function Store() {
       <Box flex="1">
         <Container maxW="7xl" py={{ base: 6, md: 12 }} px={{ base: 4, md: 8 }}>
           <Box mb={8}>
-            <StoreHeader title="Store" imageSrc={STORE_BANNER} />
+            <StoreHeader
+              title="Store"
+              imageSrc={storeBanner} // Fixed Import
+            />
           </Box>
 
           <Center mb={12}>
@@ -471,7 +462,7 @@ export default function Store() {
               <ScalesCard
                 key={realBalance}
                 userId={currentUserId}
-                scalesImage={SCALES_ICON}
+                scalesImage={scalesIcon} // Fixed Import
               />
             ) : (
               <Text>Please log in to view your balance</Text>
@@ -481,10 +472,10 @@ export default function Store() {
           {/* Responsive Product Grid */}
           <Grid
             templateColumns={{
-              base: "1fr", // 1 col on mobile
-              sm: "repeat(2, 1fr)", // 2 cols on tablet
-              md: "repeat(3, 1fr)", // 3 cols on small desktop
-              lg: "repeat(4, 1fr)", // 4 cols on large desktop
+              base: "1fr",
+              sm: "repeat(2, 1fr)",
+              md: "repeat(3, 1fr)",
+              lg: "repeat(4, 1fr)",
             }}
             gap={{ base: 6, md: 8 }}
           >
@@ -500,7 +491,6 @@ export default function Store() {
         </Container>
       </Box>
 
-      {/* 3. Footer */}
       <Box width="100%" mt="auto">
         <Footer />
       </Box>
@@ -509,7 +499,7 @@ export default function Store() {
       <Modal
         isOpen={isOpen}
         onClose={handleClose}
-        size={{ base: "full", md: "md" }} // Fullscreen on mobile
+        size={{ base: "full", md: "md" }}
         isCentered
         scrollBehavior="inside"
       >

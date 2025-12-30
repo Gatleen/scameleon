@@ -5,6 +5,9 @@ import NavigationBarItems from "../components/NavigationBar";
 import Footer from "../components/Footer";
 import PrivacyPolicyHeader from "../components/headerCards/PrivacyPolicyHeader";
 
+// --- FIXED IMAGE IMPORT ---
+import privacyHeaderChar from "../assets/PageCharacters/ScameleonPrivacyPolicy.png";
+
 const PrivacyPolicy: React.FC = () => {
   return (
     <Flex
@@ -26,7 +29,7 @@ const PrivacyPolicy: React.FC = () => {
           <Box mb={8}>
             <PrivacyPolicyHeader
               title="Privacy Policy"
-              imageSrc="src/assets/PageCharacters/ScameleonPrivacyPolicy.png"
+              imageSrc={privacyHeaderChar} // Fixed: Using imported variable
             />
           </Box>
         </Container>

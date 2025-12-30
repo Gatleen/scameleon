@@ -5,6 +5,10 @@ import NavigationBarItems from "../components/NavigationBar";
 import Footer from "../components/Footer";
 import TermsConditionsHeader from "../components/headerCards/TermsConditionsHeader";
 
+// --- FIXED IMAGE IMPORT ---
+// Ensure this file exists in your assets folder
+import termsHeaderChar from "../assets/PageCharacters/ScameleonTermsConditions.png";
+
 const TermsConditions: React.FC = () => {
   return (
     <Flex
@@ -26,7 +30,7 @@ const TermsConditions: React.FC = () => {
           <Box mb={8}>
             <TermsConditionsHeader
               title="Terms & Conditions"
-              imageSrc="src/assets/PageCharacters/ScameleonTermsConditions.png"
+              imageSrc={termsHeaderChar} // Fixed: Using imported variable
             />
           </Box>
         </Container>

@@ -13,9 +13,16 @@ import {
 } from "@chakra-ui/react";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+
+// --- EXISTING IMPORTS (Correct) ---
 import GatleenScameleon2 from "../assets/GatleenScameleon2.jpg";
-// 1. Import your new "pop-out" image here
 import ScameleonAbout from "../assets/PageCharacters/ScameleonAbout.png";
+
+// --- NEW FIX: IMPORT THE GRID IMAGES ---
+// Ensure these filenames match your folder exactly (case-sensitive!)
+import gatleen1 from "../assets/Gatleen1.jpeg";
+import gatleen2 from "../assets/Gatleen2.jpeg";
+import gatleen3 from "../assets/Gatleen3.jpeg";
 
 interface AboutScameleonProps {}
 
@@ -65,12 +72,11 @@ const AboutScameleon: React.FC<AboutScameleonProps> = () => {
     <Box
       bg="#f9f1e8"
       minH="100vh"
-      w="100%" // FIX: Ensures the box takes full width of parent
-      m="0" // FIX: Resets margin to prevent outer spacing issues
+      w="100%"
+      m="0"
       p="0"
       display="flex"
       flexDirection="column"
-      // FIX: Removed overflowX="hidden" from here to prevent double scrollbars
     >
       {/* Header */}
       <Box
@@ -297,9 +303,10 @@ const AboutScameleon: React.FC<AboutScameleonProps> = () => {
             </Heading>
 
             <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6}>
-              <SimpleImageCard src="src/assets/Gatleen1.jpeg" alt="Image1" />
-              <SimpleImageCard src="src/assets/Gatleen2.jpeg" alt="Image2" />
-              <SimpleImageCard src="src/assets/Gatleen3.jpeg" alt="Image3" />
+              {/* FIXED: Using imported variables */}
+              <SimpleImageCard src={gatleen1} alt="Image1" />
+              <SimpleImageCard src={gatleen2} alt="Image2" />
+              <SimpleImageCard src={gatleen3} alt="Image3" />
             </SimpleGrid>
           </Box>
         </Container>
@@ -309,40 +316,25 @@ const AboutScameleon: React.FC<AboutScameleonProps> = () => {
       {/* FOOTER SECTION                            */}
       {/* ========================================= */}
 
-      {/* FIX: Wrapper ensures full width. 
-          mt={56} gives the vertical spacing you wanted.
-      */}
       <Box position="relative" mt={56} w="100%">
         {/* The Pop-Out Character */}
         <Box
           position="absolute"
-          // "bottom: 100%" puts the bottom of the image exactly at the top line of the footer
-          // Subtracting a few pixels (e.g. -2px) hides any tiny gaps
           bottom="-2px"
-          // Center the image horizontally
           left="50%"
           transform="translateX(-50%)"
-          // Ensure it sits on top of the footer background
           zIndex={2}
-          // Constrain width so it doesn't take over on mobile
           w={{ base: "150px", md: "250px" }}
         >
           <ChakraImage
             src={ScameleonAbout}
             alt="Scameleon popping out"
-            // Ensure this image is a PNG with transparent background
             fallbackSrc="https://via.placeholder.com/200x200?text=Character"
           />
         </Box>
 
-        {/* The Footer Bar (Empty & Full Width) */}
-        <Box
-          bg="#bba661e9" // Same color as header
-          h="80px" // FIX: Made slightly taller to look more "full"
-          w="100%" // FIX: Explicitly full width
-          position="relative"
-          zIndex={1} // Lower z-index than the image so the image pops "over" it
-        />
+        {/* The Footer Bar */}
+        <Box bg="#bba661e9" h="80px" w="100%" position="relative" zIndex={1} />
       </Box>
     </Box>
   );

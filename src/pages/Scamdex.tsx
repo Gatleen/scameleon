@@ -44,6 +44,9 @@ import ScamdexHeader from "../components/headerCards/ScamdexHeader";
 import NavBar from "../components/NavigationBar";
 import Footer from "../components/Footer";
 
+// --- FIXED HEADER IMAGE IMPORT ---
+import scamdexHeaderChar from "../assets/PageCharacters/ScameleonScamdex.png";
+
 // 1. Define the Interface for TypeScript
 export interface Scam {
   id: number;
@@ -106,7 +109,6 @@ const Scamdex = () => {
       </Box>
 
       {/* --- MAIN CONTENT SECTION --- */}
-      {/* flex="1" ensures this section grows to fill space, pushing footer down */}
       <Box flex="1" pt={4} pb={12}>
         <Container
           maxW="container.xl"
@@ -117,7 +119,7 @@ const Scamdex = () => {
           <Box mb={8}>
             <ScamdexHeader
               title="The Scamdex"
-              imageSrc="src/assets/PageCharacters/ScameleonScamdex.png"
+              imageSrc={scamdexHeaderChar} // Fixed: Using imported variable
             />
           </Box>
 
@@ -157,7 +159,7 @@ const Scamdex = () => {
                 borderRadius="full"
                 px={4}
                 py={2}
-                mb={2} // Add margin bottom for wrapping on mobile
+                mb={2}
               >
                 <TagLeftIcon as={FaFilter} />
                 <TagLabel>All Scams</TagLabel>
@@ -175,7 +177,7 @@ const Scamdex = () => {
                   borderRadius="full"
                   px={4}
                   py={2}
-                  mb={2} // Add margin bottom for wrapping on mobile
+                  mb={2}
                   _hover={{ bg: "orange.100" }}
                 >
                   <TagLabel>{cat}</TagLabel>
@@ -275,7 +277,6 @@ const Scamdex = () => {
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        // FIX: Full screen on mobile, large on desktop
         size={{ base: "full", md: "lg" }}
         isCentered
         scrollBehavior="inside"
