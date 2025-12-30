@@ -6,7 +6,6 @@ import {
   Button,
   VStack,
   Icon,
-  SimpleGrid,
   Heading,
   IconButton,
   Badge,
@@ -71,7 +70,8 @@ export const AdwareSimulator = ({ onComplete }: { onComplete: () => void }) => {
         return;
       }
       const id = Date.now() + Math.random();
-      const x = Math.random() * 60 + 10;
+      // Keep popups within a safe range (10% to 80%) to avoid them going off-screen
+      const x = Math.random() * 70 + 10;
       const y = Math.random() * 60 + 10;
       const type = Math.floor(Math.random() * 3);
       setPopups((prev) => [...prev, { id, x, y, type }]);
@@ -186,7 +186,7 @@ export const AdwareSimulator = ({ onComplete }: { onComplete: () => void }) => {
       userSelect="none"
     >
       {/* Desktop */}
-      <Box flex={1} position="relative" p={8}>
+      <Box flex={1} position="relative" p={4}>
         {stage === "download" && (
           <Box
             maxW="md"
@@ -258,7 +258,7 @@ export const AdwareSimulator = ({ onComplete }: { onComplete: () => void }) => {
               position="absolute"
               top={`${p.y}%`}
               left={`${p.x}%`}
-              w="64"
+              w={{ base: "48", md: "64" }} // Responsive width for popups
               bg="white"
               shadow="2xl"
               borderWidth="2px"
@@ -276,7 +276,7 @@ export const AdwareSimulator = ({ onComplete }: { onComplete: () => void }) => {
                 fontWeight="bold"
                 bg={config.headerColor}
               >
-                <Text>{config.headerTitle}</Text>
+                <Text isTruncated>{config.headerTitle}</Text>
                 <Icon
                   as={X}
                   cursor="pointer"
@@ -291,7 +291,7 @@ export const AdwareSimulator = ({ onComplete }: { onComplete: () => void }) => {
                 {p.type === 0 && (
                   <>
                     <TrophyIcon />
-                    <Text fontSize="sm" fontWeight="bold">
+                    <Text fontSize="xs" fontWeight="bold">
                       {config.contentTitle}
                     </Text>
                     <Button size="xs" colorScheme="blue" w="full">
@@ -302,7 +302,7 @@ export const AdwareSimulator = ({ onComplete }: { onComplete: () => void }) => {
                 {p.type === 1 && (
                   <>
                     <Icon as={AlertTriangle} color="red.500" boxSize={8} />
-                    <Text fontSize="sm" fontWeight="bold">
+                    <Text fontSize="xs" fontWeight="bold">
                       {config.contentTitle}
                     </Text>
                     <Button size="xs" colorScheme="red" w="full">
@@ -313,7 +313,7 @@ export const AdwareSimulator = ({ onComplete }: { onComplete: () => void }) => {
                 {p.type === 2 && (
                   <>
                     <Icon as={Heart} color="pink.500" boxSize={8} />
-                    <Text fontSize="sm" fontWeight="bold">
+                    <Text fontSize="xs" fontWeight="bold">
                       {config.contentTitle}
                     </Text>
                     <Button
@@ -343,7 +343,8 @@ export const AdwareSimulator = ({ onComplete }: { onComplete: () => void }) => {
             top="50%"
             left="50%"
             transform="translate(-50%, -50%)"
-            w="500px"
+            // FIX: RESPONSIVE WIDTH FOR MODAL
+            w={{ base: "90%", md: "500px" }}
             bg="gray.900"
             rounded="xl"
             shadow="2xl"
@@ -363,7 +364,9 @@ export const AdwareSimulator = ({ onComplete }: { onComplete: () => void }) => {
             >
               <Flex align="center" gap={2} fontWeight="bold" fontSize="lg">
                 <Icon as={Shield} size={20} color="green.400" />
-                <Text>Scameleon Antivirus Pro</Text>
+                <Text fontSize={{ base: "md", md: "lg" }}>
+                  Scameleon Antivirus
+                </Text>
               </Flex>
               <IconButton
                 aria-label="close"
@@ -377,7 +380,7 @@ export const AdwareSimulator = ({ onComplete }: { onComplete: () => void }) => {
               />
             </Flex>
 
-            <Box p={8}>
+            <Box p={{ base: 4, md: 8 }}>
               {stage === "antivirus_open" && (
                 <VStack spacing={6} textAlign="center">
                   <Text fontSize="6xl" mb={4}>
@@ -386,14 +389,15 @@ export const AdwareSimulator = ({ onComplete }: { onComplete: () => void }) => {
                   <Heading size="md" color="red.500">
                     System at Risk!
                   </Heading>
-                  <Text color="gray.400">
-                    Multiple active threats detected on your desktop. Immediate
+                  <Text color="gray.400" fontSize="sm">
+                    Multiple active threats detected on your system. Immediate
                     action required.
                   </Text>
                   <Button
                     size="lg"
                     colorScheme="blue"
                     shadow="lg"
+                    w="full"
                     animation={`${pulseKeyframe} 2s infinite`}
                     onClick={startScan}
                   >
@@ -444,7 +448,7 @@ export const AdwareSimulator = ({ onComplete }: { onComplete: () => void }) => {
                 <VStack spacing={6}>
                   <Box
                     bg="red.900"
-                    opacity={0.3}
+                    opacity={0.8}
                     borderWidth="1px"
                     borderColor="red.500"
                     p={4}
@@ -452,10 +456,10 @@ export const AdwareSimulator = ({ onComplete }: { onComplete: () => void }) => {
                     textAlign="center"
                     w="full"
                   >
-                    <Heading size="sm" color="red.400" mb={2}>
+                    <Heading size="sm" color="red.400" mb={1}>
                       {threats} Threats Identified
                     </Heading>
-                    <Text fontSize="sm" color="gray.300">
+                    <Text fontSize="xs" color="gray.300">
                       Adware.Win32.PopUpGen found in memory.
                     </Text>
                   </Box>
@@ -469,10 +473,12 @@ export const AdwareSimulator = ({ onComplete }: { onComplete: () => void }) => {
                         bg="gray.800"
                         p={2}
                         rounded="md"
-                        fontSize="sm"
+                        fontSize="xs"
                       >
                         <Text color="red.300">Trojan.Adware.Generic</Text>
-                        <Badge colorScheme="yellow">High Risk</Badge>
+                        <Badge colorScheme="yellow" fontSize="0.6em">
+                          High Risk
+                        </Badge>
                       </Flex>
                     ))}
                     {popups.length > 3 && (
@@ -511,7 +517,7 @@ export const AdwareSimulator = ({ onComplete }: { onComplete: () => void }) => {
                   <Heading size="md" color="white">
                     System Protected
                   </Heading>
-                  <Text color="gray.400">
+                  <Text color="gray.400" fontSize="sm">
                     All threats have been successfully removed. Your computer is
                     safe.
                   </Text>
@@ -597,7 +603,7 @@ export const AdwareSimulator = ({ onComplete }: { onComplete: () => void }) => {
           </Flex>
         </Box>
         <Text color="white" fontSize="xs" fontFamily="mono">
-          14:02
+          00.00 PM
         </Text>
       </Flex>
     </Flex>

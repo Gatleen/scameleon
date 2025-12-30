@@ -28,6 +28,7 @@ import {
   Star,
   Trophy,
   Shield,
+  X,
 } from "lucide-react";
 
 // --- FIREBASE IMPORTS ---
@@ -45,12 +46,10 @@ import ScalesCard from "../components/ScalesCard";
 import { BADGES, PASS_SCORE } from "../data/GameConfig";
 import type { LevelScores } from "../types";
 
-// --- FIXED ASSET IMPORTS ---
+// --- ASSET IMPORTS ---
 import profilePlaceholder from "../assets/ProfilePlaceholder.png";
 import coverPlaceholder from "../assets/CoverPlaceholder.png";
 import profileHeaderChar from "../assets/PageCharacters/ScameleonProfile.png";
-
-// --- NEW FIX: Import the Scales Icon ---
 import scalesIcon from "../assets/ScalesIcon.png";
 
 // Preset Covers
@@ -111,7 +110,7 @@ function StatBox({
       rounded="xl"
       border="1px solid"
       borderColor="orange.100"
-      flex={1}
+      width="100%" // Ensure it takes full width of grid cell
       spacing={1}
       shadow="sm"
     >
@@ -125,6 +124,7 @@ function StatBox({
         color="gray.500"
         textTransform="uppercase"
         letterSpacing="wide"
+        textAlign="center"
       >
         {label}
       </Text>
@@ -434,13 +434,22 @@ export default function UserProfile({
               )}
             </Box>
 
-            <Box px={8} pb={8}>
-              <Flex justify="space-between" align="flex-end" mt="-48px" mb={6}>
+            <Box px={{ base: 4, sm: 8 }} pb={8}>
+              {/* HEADER ROW: Avatar + Buttons */}
+              <Flex
+                justify="space-between"
+                align="flex-end"
+                mt="-48px"
+                mb={6}
+                // FIX 1: Wrap on very small screens to prevent button cutoff
+                wrap="wrap"
+                gap={4}
+              >
                 {/* Avatar */}
                 <Box position="relative" role="group">
                   <Box
-                    w="120px"
-                    h="120px"
+                    w={{ base: "100px", sm: "120px" }}
+                    h={{ base: "100px", sm: "120px" }}
                     borderRadius="full"
                     border="4px solid white"
                     bg="gray.100"
@@ -472,14 +481,16 @@ export default function UserProfile({
                     )}
                   </Box>
                 </Box>
+
                 {/* Edit Buttons */}
                 <Box mb={2}>
                   {isEditing ? (
-                    <HStack>
+                    <HStack spacing={2}>
                       <Button
                         size="sm"
                         variant="ghost"
                         onClick={handleEditToggle}
+                        px={3}
                       >
                         Cancel
                       </Button>
@@ -488,6 +499,7 @@ export default function UserProfile({
                         colorScheme="orange"
                         leftIcon={<Save size={16} />}
                         onClick={handleSave}
+                        px={4}
                       >
                         Save
                       </Button>
@@ -537,8 +549,9 @@ export default function UserProfile({
 
               <Divider my={6} borderColor="orange.100" />
 
-              {/* --- STATS SECTION --- */}
-              <HStack justify="space-between" spacing={4}>
+              {/* --- STATS SECTION (FIXED FOR MOBILE) --- */}
+              {/* FIX 2: Use SimpleGrid. 1 col on mobile, 3 cols on tablet+ */}
+              <SimpleGrid columns={{ base: 1, sm: 3 }} spacing={4}>
                 <StatBox
                   icon={Star}
                   label="Total Score"
@@ -557,14 +570,13 @@ export default function UserProfile({
                   val={stats.validBadgeCount}
                   color="pink.500"
                 />
-              </HStack>
+              </SimpleGrid>
             </Box>
           </Box>
 
           {/* --- SCALES CARD (Balance) --- */}
           {currentAuthUser && (
             <Flex justify="center" mb={6}>
-              {/* FIXED: Passing the imported icon explicitly */}
               <ScalesCard
                 userId={currentAuthUser.uid}
                 scalesImage={scalesIcon}
@@ -609,11 +621,13 @@ export default function UserProfile({
                       shadow: isUnlocked ? "md" : "none",
                       borderColor: isUnlocked ? `orange.200` : "gray.100",
                     }}
+                    gap={4} // Consistent spacing between text and lock icon
                   >
-                    <HStack spacing={4}>
+                    <HStack spacing={4} flex={1} overflow="hidden">
                       <Flex
                         w="14"
                         h="14"
+                        flexShrink={0} // Prevent icon squishing
                         borderRadius="lg"
                         bg={isUnlocked ? `${colorScheme}.50` : "gray.100"}
                         border="1px solid"
@@ -637,11 +651,13 @@ export default function UserProfile({
                         />
                       </Flex>
 
-                      <Box>
-                        <HStack>
+                      {/* FIX 3: Add minW={0} to allow text truncation if needed */}
+                      <Box minW={0}>
+                        <HStack spacing={2} wrap="wrap">
                           <Text
                             fontWeight="bold"
                             color={isUnlocked ? "gray.800" : "gray.500"}
+                            noOfLines={1} // Prevent text breaking layout
                           >
                             {badge.name}
                           </Text>
@@ -655,12 +671,17 @@ export default function UserProfile({
                             </ChakraBadge>
                           )}
                         </HStack>
-                        <Text fontSize="sm" color="gray.500">
+                        <Text fontSize="sm" color="gray.500" noOfLines={2}>
                           {badge.desc}
                         </Text>
                       </Box>
                     </HStack>
-                    <Box color={isUnlocked ? "green.400" : "gray.300"}>
+
+                    {/* FIX 3: Prevent lock icon from shrinking */}
+                    <Box
+                      color={isUnlocked ? "green.400" : "gray.300"}
+                      flexShrink={0}
+                    >
                       {isUnlocked ? <Unlock size={20} /> : <Lock size={20} />}
                     </Box>
                   </Flex>

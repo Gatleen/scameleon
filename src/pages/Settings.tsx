@@ -94,14 +94,14 @@ const Settings = () => {
   };
 
   // --- HANDLER: LOGOUT ---
-  // --- HANDLER: LOGOUT ---
   const handleLogout = async () => {
     setLogoutLoading(true);
     try {
-      // 1. CLEAR LOCAL STORAGE (Add this line!)
+      // 1. CLEAR LOCAL STORAGE
       // This wipes the "ghost data" so the next login is fresh.
-      localStorage.clear(); // 2. Sign out of Firebase
+      localStorage.clear();
 
+      // 2. Sign out of Firebase
       await signOut(auth);
 
       toast({
@@ -109,8 +109,9 @@ const Settings = () => {
         status: "success",
         duration: 2000,
         position: "top",
-      }); // Redirect to Start Page
+      });
 
+      // 3. Redirect to Start Page
       navigate("/");
     } catch (error) {
       console.error("Error signing out: ", error);
@@ -226,23 +227,28 @@ const Settings = () => {
               </Accordion>
             </Box>
 
-            {/* --- SUPPORT SECTION --- */}
+            {/* --- SUPPORT SECTION (FIXED FOR MOBILE) --- */}
             <Box>
               <Flex
+                // Responsive direction: Column on Mobile, Row on larger screens
+                direction={{ base: "column", sm: "row" }}
                 align="center"
                 justify="flex-start"
                 bg="whiteAlpha.800"
                 p={6}
                 rounded="2xl"
                 shadow="sm"
-                gap={6}
+                gap={{ base: 4, sm: 6 }} // Smaller gap on mobile
                 border="1px solid"
                 borderColor="orange.100"
+                // Center text on mobile for better layout
+                textAlign={{ base: "center", sm: "left" }}
               >
                 <Image
                   src={supportMascotImg}
                   alt="Support Mascot"
-                  boxSize="100px"
+                  // Resize image slightly on mobile to save space
+                  boxSize={{ base: "80px", sm: "100px" }}
                   objectFit="contain"
                 />
 
@@ -257,10 +263,13 @@ const Settings = () => {
                   </Text>
                   <Text fontSize="sm" color="gray.600">
                     Email us at{" "}
+                    {/* Ensure link breaks correctly on small screens */}
                     <Link
                       href="mailto:scameleon.app@gmail.com"
                       color="orange.600"
                       fontWeight="bold"
+                      display="inline-block" // Allows wrapping behavior
+                      wordBreak="break-all" // Forces break if too long
                     >
                       scameleon.app@gmail.com
                     </Link>

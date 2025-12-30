@@ -15,7 +15,6 @@ import {
   Image,
   Spinner,
   Badge,
-  Center,
   Flex,
   Container,
 } from "@chakra-ui/react";
@@ -37,7 +36,6 @@ import { awardScales } from "../utils/awardScales";
 import { SCALE_REWARDS } from "../constants/scalesRewards";
 
 // --- FIXED IMAGE IMPORTS ---
-// Ensure these files exist in these exact folders inside src/assets/
 import correctImg from "../assets/DailyQuizCorrect.png";
 import wrongImg from "../assets/DailyQuizWrong.png";
 import quizHeaderChar from "../assets/PageCharacters/ScameleonQuizDaily.png";
@@ -111,6 +109,13 @@ const DailyQuiz = () => {
     const isCorrect = selectedIndex === currentQuestion.correctIndex;
     const result = { answered: true, selectedIndex, isCorrect };
 
+    // --- FIX 2: UPDATE UI IMMEDIATELY (Optimistic Update) ---
+    // We update state first so the user sees the result instantly.
+    localStorage.setItem(dayKey, JSON.stringify(result));
+    setQuizResult(result);
+    setShowFeedback({ visible: true, isCorrect });
+
+    // --- Background Database Sync ---
     try {
       const today = new Date().toISOString().split("T")[0];
       const userRef = doc(db, "users", currentUser.uid);
@@ -119,16 +124,13 @@ const DailyQuiz = () => {
       if (userSnap.exists()) {
         const data = userSnap.data();
 
+        // If the DB says we already played today, stop here (don't award points twice)
         if (data.lastDailyQuizDate === today) {
-          toast({
-            title: "Daily quiz already completed",
-            status: "info",
-            duration: 3000,
-            isClosable: true,
-          });
+          console.log("Daily quiz already recorded for today.");
           return;
         }
 
+        // Award Scales
         await awardScales(
           currentUser.uid,
           isCorrect
@@ -137,17 +139,15 @@ const DailyQuiz = () => {
           "Daily quiz completed"
         );
 
+        // Update Date
         await updateDoc(userRef, {
           lastDailyQuizDate: today,
         });
       }
     } catch (error) {
-      console.error("Error awarding scales:", error);
+      console.error("Error syncing quiz result:", error);
+      // We don't revert the UI because the user technically "played" locally
     }
-
-    localStorage.setItem(dayKey, JSON.stringify(result));
-    setQuizResult(result);
-    setShowFeedback({ visible: true, isCorrect });
   };
 
   if (loading) {
@@ -184,11 +184,8 @@ const DailyQuiz = () => {
       {/* 2. Main Content Container */}
       <Container maxW="container.lg" flex="1" py={8} px={{ base: 4, md: 8 }}>
         <VStack spacing={8} align="center" w="full">
-          {/* Header - FIXED IMAGE */}
-          <DailyQuizHeader
-            title="Daily Quiz"
-            imageSrc={quizHeaderChar} // Uses imported variable
-          />
+          {/* Header */}
+          <DailyQuizHeader title="Daily Quiz" imageSrc={quizHeaderChar} />
 
           {/* Quiz Card */}
           <Box
@@ -324,7 +321,6 @@ const DailyQuiz = () => {
             </Text>
           </ModalHeader>
           <ModalBody p={0} display="flex" justifyContent="center" bg="gray.50">
-            {/* FIXED IMAGE SRC - Using Imports */}
             <Image
               src={showFeedback.isCorrect ? correctImg : wrongImg}
               alt="Feedback"
