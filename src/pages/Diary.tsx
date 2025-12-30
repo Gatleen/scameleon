@@ -241,8 +241,10 @@ export default function Diary() {
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    const touch = e.touches[0];
-    moveDrag(touch.clientX, touch.clientY);
+    if (draggingItem) {
+      const touch = e.touches[0];
+      moveDrag(touch.clientX, touch.clientY);
+    }
   };
 
   const handleTouchEnd = () => {
@@ -559,6 +561,8 @@ export default function Diary() {
                     cursor="move"
                     userSelect="none"
                     zIndex={20}
+                    // FIX: Passed as style to satisfy Typescript
+                    style={{ touchAction: "none" }}
                     // Mouse Events
                     onMouseDown={(e) => handleItemMouseDown(e, item.id)}
                     onDoubleClick={() => rotateItem(item.id)}
