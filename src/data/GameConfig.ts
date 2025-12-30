@@ -8,10 +8,10 @@ import world4Json from "./world4-web_trap_jungle.json";
 import world5Json from "./world5-social_scam_city.json";
 
 // ==========================================
-// ASSET IMPORTS (FIXED)
+// ASSET IMPORTS
 // ==========================================
 
-// --- WORLD IMAGES ---
+// --- WORLD IMAGES (Keep imported if they are in src/assets) ---
 import world1Img from "../assets/QuizWorlds/world1-email_forest.png";
 import world2Img from "../assets/QuizWorlds/world2-sms_desert_dune.png";
 import world3Img from "../assets/QuizWorlds/world3-call_of_the_ocean.png";
@@ -40,20 +40,12 @@ import level18 from "../assets/QuizBanners/Level18.png";
 import level19 from "../assets/QuizBanners/Level19.png";
 import level20 from "../assets/QuizBanners/Level20.png";
 
-// --- WORLD VIDEOS (VILLAIN INTROS) ---
+// --- WORLD VIDEOS ---
 import world1Vid from "../assets/QuizWorlds/villianworld1-phishy_the_fish.mp4";
 import world2Vid from "../assets/QuizWorlds/villianworld2-dusty_the_dune_worm.mp4";
 import world3Vid from "../assets/QuizWorlds/villianworld3-claws_the_crab.mp4";
 import world4Vid from "../assets/QuizWorlds/villianworld4-web_widow_the_spider.mp4";
 import world5Vid from "../assets/QuizWorlds/villianworld5-svana_the_swan.mp4";
-
-// --- VICTORY IMAGES (DEFEATED VILLAINS) ---
-// Assuming these are in src/assets/DefeatedScamVillains/
-import victory1 from "../assets/DefeatedScamVillains/PhishyTheFishDefeated.png";
-import victory2 from "../assets/DefeatedScamVillains/DustyTheDuneWormDefeated.png";
-import victory3 from "../assets/DefeatedScamVillains/ClawsTheCrabDefeated.png";
-import victory4 from "../assets/DefeatedScamVillains/WebWidowtheDefeated.png";
-import victory5 from "../assets/DefeatedScamVillains/SvanaTheSwanDefeated.png";
 
 // --- BADGE ICONS ---
 import badgeBug from "../assets/QuizBadges/BugSquasher.png";
@@ -64,6 +56,9 @@ import badgeHeart from "../assets/QuizBadges/HeartProtector.png";
 import badgeLives from "../assets/QuizBadges/NoLivesLost.png";
 import badgeSharp from "../assets/QuizBadges/SharpEyed.png";
 import badgeTerminator from "../assets/QuizBadges/ScamTerminator.png";
+
+// NOTE: VICTORY IMAGES ARE IN PUBLIC FOLDER
+// We do NOT import them. We reference them by string path below.
 
 // ==========================================
 // CONFIGURATION
@@ -109,27 +104,27 @@ export const ASSET_PATHS = {
     1: {
       title: "Welcome to the Email Forest!",
       url: world1Vid,
-      desc: "Watch out for Phisy the Fish! The Email Forest is dense with deceit.",
+      desc: "Watch out for typos and fake sender names! The Email Forest is dense with deceit.",
     },
     2: {
       title: "Surviving the SMS Desert Dune",
       url: world2Vid,
-      desc: "Urgency is the Dusty the Dune Worm's main weapon. Don't click that link in the hot sands!",
+      desc: "Urgency is the SMS scammer's main weapon. Don't click that link in the hot sands!",
     },
     3: {
       title: "Will you answer the Call of the Ocean?",
       url: world3Vid,
-      desc: "Claws the Crab uses fear and authority to pressure you. Hang up if he asks for sensitive info.",
+      desc: "Scam callers use fear and authority to pressure you. Hang up if they ask for sensitive info.",
     },
     4: {
       title: "Don't Fall for the Web Trap Jungle!",
       url: world4Vid,
-      desc: "Fake websites and pop-ups are everywhere. Be careful of Web Widow the Spider!",
+      desc: "Fake websites and pop-ups are everywhere. Verify the URL bar before logging in!",
     },
     5: {
       title: "Get Entangled in Social Scam City",
       url: world5Vid,
-      desc: "The city never sleeps, and neither does Svana the Swan. Be skeptical of strangers.",
+      desc: "The city never sleeps, and neither do the romance and job scammers. Be skeptical of strangers.",
     },
   },
 };
@@ -206,7 +201,8 @@ export const WORLDS: World[] = [
     icon: Trees,
     bgImage: ASSET_PATHS.WORLD_IMAGES[1],
     desc: "Bright, leafy world where scam emails hide.",
-    victoryImage: victory1,
+    // FIX: Referencing Public folder file directly
+    victoryImage: "/DefeatedScamVillains/PhishyTheFishDefeated.png",
   },
   {
     id: 2,
@@ -216,7 +212,7 @@ export const WORLDS: World[] = [
     icon: Waves,
     bgImage: ASSET_PATHS.WORLD_IMAGES[2],
     desc: "Hot, sandy terrain where scam SMS blow in.",
-    victoryImage: victory2,
+    victoryImage: "/DefeatedScamVillains/DustyTheDuneWormDefeated.png",
   },
   {
     id: 3,
@@ -226,7 +222,7 @@ export const WORLDS: World[] = [
     icon: Mountain,
     bgImage: ASSET_PATHS.WORLD_IMAGES[3],
     desc: "Echoing canyon where scam callers mimic voices.",
-    victoryImage: victory3,
+    victoryImage: "/DefeatedScamVillains/ClawsTheCrabDefeated.png",
   },
   {
     id: 4,
@@ -236,7 +232,7 @@ export const WORLDS: World[] = [
     icon: AlertTriangle,
     bgImage: ASSET_PATHS.WORLD_IMAGES[4],
     desc: "Thick jungle where fake sites lurk.",
-    victoryImage: victory4,
+    victoryImage: "/DefeatedScamVillains/WebWidowtheDefeated.png",
   },
   {
     id: 5,
@@ -246,7 +242,7 @@ export const WORLDS: World[] = [
     icon: Building2,
     bgImage: ASSET_PATHS.WORLD_IMAGES[5],
     desc: "Neon city filled with social engineering traps.",
-    victoryImage: victory5,
+    victoryImage: "/DefeatedScamVillains/SvanaTheSwanDefeated.png",
   },
 ];
 
@@ -307,7 +303,6 @@ export const getQuestions = (levelId: number): AnsweredQuestion[] => {
     answers: q.choices.map((c: any) => ({ k: c.id, t: c.text })),
     correctKey: q.correctChoiceId,
     expl: q.explanation,
-    // FIX: Using the mapped images from the top of the file
     imageUrl:
       ASSET_PATHS.LEVEL_IMAGES[
         levelId.toString() as unknown as keyof typeof ASSET_PATHS.LEVEL_IMAGES
