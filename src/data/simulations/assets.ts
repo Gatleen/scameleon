@@ -16,7 +16,7 @@ import dennyVoice from "../../assets/sounds/Denny-1.mp3";
 
 // --- IMAGE IMPORTS ---
 import iphoneImg from "../../assets/iPhone15.jpg";
-import shopLogo from "../../assets/Logos/TEMP_LOGO.jpg";
+import shopLogo from "../../assets/Logos/ShopLogo.jpg";
 import maybankLogo from "../../assets/Logos/MaybankLogo.png";
 import dennyImg from "../../assets/Denny.png";
 
