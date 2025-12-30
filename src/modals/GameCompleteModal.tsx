@@ -15,8 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { LayoutDashboard } from "lucide-react";
 
-// 1. IMPORT THE IMAGE: This tells the build tool to process the file
-// Adjust the "../" based on your file structure depth
+// Adjust path as needed
 import victoryImage from "../assets/QuizWorlds/AllDefeated.png";
 
 interface GameCompleteModalProps {
@@ -33,31 +32,53 @@ const GameCompleteModal: React.FC<GameCompleteModalProps> = ({
       isOpen={isOpen}
       onClose={onBackToDashboard}
       isCentered
-      size="xl"
+      // FIX 1: Responsive Modal Size
+      // 'xs' or 'sm' on mobile, 'xl' on desktop
+      size={{ base: "sm", md: "xl" }}
       closeOnOverlayClick={false}
+      // FIX 2: Ensure it doesn't overflow the viewport height on small phones
+      scrollBehavior="inside"
     >
       <ModalOverlay backdropFilter="blur(10px)" />
-      <ModalContent rounded="3xl" p={6} textAlign="center">
+      <ModalContent
+        rounded="3xl"
+        // FIX 3: Dynamic Padding
+        p={{ base: 4, md: 6 }}
+        textAlign="center"
+        // FIX 4: Add margin on mobile so it doesn't touch screen edges
+        mx={{ base: 4, md: 0 }}
+      >
         <ModalBody>
-          <VStack spacing={6}>
-            <Heading size="2xl" color="pink.500" fontWeight="extrabold">
+          <VStack spacing={{ base: 4, md: 6 }}>
+            {/* FIX 5: Responsive Font Sizes */}
+            <Heading
+              size={{ base: "xl", md: "2xl" }}
+              color="pink.500"
+              fontWeight="extrabold"
+              lineHeight="shorter"
+            >
               CONGRATULATIONS!
             </Heading>
 
-            <Text fontSize="xl" fontWeight="bold" color="gray.600">
+            <Text
+              fontSize={{ base: "md", md: "xl" }}
+              fontWeight="bold"
+              color="gray.600"
+            >
               You defeated the ScamVillains!
             </Text>
 
             <Box
               w="full"
-              h="300px"
+              // FIX 6: Responsive Image Height
+              // 180px on mobile, 300px on desktop
+              h={{ base: "180px", md: "300px" }}
               bg="gray.100"
               rounded="2xl"
               overflow="hidden"
               border="4px dashed"
               borderColor="pink.200"
             >
-              {/* 2. USE THE VARIABLE: Pass the imported variable to src */}
               <Image
                 src={victoryImage}
                 alt="Victory Scene"
@@ -73,7 +94,7 @@ const GameCompleteModal: React.FC<GameCompleteModalProps> = ({
               />
             </Box>
 
-            <Text fontSize="md" color="gray.500">
+            <Text fontSize={{ base: "sm", md: "md" }} color="gray.500">
               You have mastered all the skills to stay safe online.
             </Text>
           </VStack>
