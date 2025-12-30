@@ -181,6 +181,7 @@ export default function Diary() {
   // --- Mouse & Touch Handlers (Merged Logic) ---
   const startDrag = (clientX: number, clientY: number, itemId: string) => {
     const item = currentEntry.items.find((s) => s.id === itemId);
+    // FIX: Ensure pageRef.current exists
     if (item && pageRef.current) {
       const rect = pageRef.current.getBoundingClientRect();
       setDraggingItem(itemId);
@@ -192,6 +193,7 @@ export default function Diary() {
   };
 
   const moveDrag = (clientX: number, clientY: number) => {
+    // FIX: Ensure pageRef.current exists
     if (draggingItem && pageRef.current) {
       const rect = pageRef.current.getBoundingClientRect();
       const x = Math.max(
@@ -454,6 +456,8 @@ export default function Diary() {
               />
 
               <Box
+                // FIX: Added ref={pageRef} here! This is crucial for dragging.
+                ref={pageRef}
                 id="diary-page-content"
                 bg="white"
                 roundedRight="2xl"
@@ -561,8 +565,8 @@ export default function Diary() {
                     cursor="move"
                     userSelect="none"
                     zIndex={20}
-                    // FIX: Passed as style to satisfy Typescript
-                    style={{ touchAction: "none" }}
+                    // FIX: Using 'sx' prop for touchAction to satisfy TypeScript and enable mobile dragging
+                    sx={{ touchAction: "none" }}
                     // Mouse Events
                     onMouseDown={(e) => handleItemMouseDown(e, item.id)}
                     onDoubleClick={() => rotateItem(item.id)}
